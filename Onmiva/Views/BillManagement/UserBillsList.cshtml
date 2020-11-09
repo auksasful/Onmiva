@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "UserBillsList";
+}
+
+<h2>Vartotojo sąskaitų sąrašas</h2>
+
+
+@Html.ActionLink("Sukurti sąskaitą", "CreateBill", "BillManagement")
+<br>
+@Html.ActionLink("Atgal", "BillManagement", "BillManagement")
+
+<ul class="list-group">
+    <li class="list-group-item"> @Html.ActionLink("Sąskaita 1", "BillView", "BillControl") @Html.ActionLink("Redaguoti sąskaitą", "EditBill", "BillManagement", 1) <button>Šalinti</button></li>
+    <li class="list-group-item"> @Html.ActionLink("Sąskaita 2", "BillView", "BillControl") @Html.ActionLink("Redaguoti sąskaitą", "EditBill", "BillManagement", 2) <button>Šalinti</button> </li>
+</ul>

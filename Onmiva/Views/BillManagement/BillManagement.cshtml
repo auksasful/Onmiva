@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "BillManagement";
+}
+
+<h2>Sąskaitų administravimo langas</h2>
+
+<br>
+@Html.ActionLink("Sąskaitų apmokėjimo būsenų sąrašas", "BillPaymentStateList", "BillManagement")
+<br>
+@Html.ActionLink("Atgal", "Index", "Home")
+
+<ul class="list-group">
+    <li class="list-group-item"> @Html.ActionLink("Vartotojo 1 sąskaitos", "UserBillsList", "BillManagement", 1)</li>
+    <li class="list-group-item">@Html.ActionLink("Vartotojo 2 sąskaitos", "UserBillsList", "BillManagement", 2)</li>
+</ul>
+
