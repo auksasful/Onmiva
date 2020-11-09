@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Sukurti kontraktą";
+}
+
+<h2>CreateContract</h2>
+
+<form action="form1" method="post">
+    <table>
+        <tr>
+            <td>Siuntėjas: </td>
+            <td><input type="text" name="txtId" /></td>
+        </tr>
+        <tr>
+            <td>Pasirašymo data</td>
+            <td><input type="date" name="pas_data" /></td>
+        </tr>
+        <tr>
+            <td>Pabaigos data </td>
+            <td><input type="date" name="pab_data" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Sukurti kontraktą" /></td>
+        </tr>
+    </table>
+</form>
+@Html.ActionLink("Atgal", "Index", "Home")
