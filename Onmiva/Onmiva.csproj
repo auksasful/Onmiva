@@ -150,6 +150,7 @@
     <Compile Include="Controllers\BillManagementController.cs" />
     <Compile Include="Controllers\BillPaymentController.cs" />
     <Compile Include="Controllers\ClientReservationController.cs" />
+    <Compile Include="Controllers\ContractManagementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderManagementController.cs" />
     <Compile Include="Controllers\TeamBuildingOffersController.cs" />
@@ -222,6 +223,9 @@
     <Content Include="Views\OrderManagement\OrderEdit.cshtml" />
     <Content Include="Views\OrderManagement\OrderView.cshtml" />
     <Content Include="Views\OrderManagement\OrdersList.cshtml" />
+    <Content Include="Views\ContractManagement\ContractList.cshtml" />
+    <Content Include="Views\ContractManagement\ContractView.cshtml" />
+    <Content Include="Views\ContractManagement\CreateContract.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
