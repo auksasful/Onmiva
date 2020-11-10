@@ -151,7 +151,11 @@
     <Compile Include="Controllers\BillPaymentController.cs" />
     <Compile Include="Controllers\ClientReservationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\TeamBuildingOffersController.cs" />
+=======
+    <Compile Include="Controllers\OrderManagementController.cs" />
+>>>>>>> 96312f072bfc3824747262a5cbb2bf91b5f35ae7
     <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Controllers\VacationCalendarController.cs" />
     <Compile Include="Global.asax.cs">
@@ -208,6 +212,7 @@
     <Content Include="Views\BillManagement\EditBill.cshtml" />
     <Content Include="Views\UserManagement\Login.cshtml" />
     <Content Include="Views\UserManagement\Register.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\ClientReservation\ClientReservation.cshtml" />
     <Content Include="Views\ClientReservation\AddClientReservation.cshtml" />
     <Content Include="Views\ClientReservation\DeleteClientReservation.cshtml" />
@@ -216,6 +221,13 @@
     <Content Include="Views\VacationCalendar\VacationCalendar.cshtml" />
     <Content Include="Views\VacationCalendar\EditVacationCalendar.cshtml" />
     <Content Include="Views\VacationCalendar\FilterVacationCalendar.cshtml" />
+=======
+    <Content Include="Views\OrderManagement\OrdersList.cshtml" />
+    <Content Include="Views\OrderManagement\OrderCreate.cshtml" />
+    <Content Include="Views\OrderManagement\OrderEdit.cshtml" />
+    <Content Include="Views\OrderManagement\FilterOrders.cshtml" />
+    <Content Include="Views\OrderManagement\OrderView.cshtml" />
+>>>>>>> 96312f072bfc3824747262a5cbb2bf91b5f35ae7
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -248,7 +260,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49266</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
