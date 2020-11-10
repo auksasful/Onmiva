@@ -231,20 +231,28 @@
     <Content Include="Views\ContractManagement\ContractView.cshtml" />
     <Content Include="Views\ContractManagement\CreateContract.cshtml" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Content Include="Views\Route\Routes.cshtml" />
+=======
+    <Content Include="Views\Routes\Routes.cshtml" />
+>>>>>>> parent of b6cac19... pridedu
     <Content Include="Views\Workers\Workers.cshtml" />
     <Content Include="Views\Schedule\Schedule.cshtml" />
     <Content Include="Views\Workers\ChooseWorker.cshtml" />
     <Content Include="Views\Workers\WorkerAndWork.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Schedule\ChooseWork.cshtml" />
 =======
     <Content Include="Views\SenderManagement\SenderManagement.cshtml" />
     <Content Include="Views\SenderManagement\SenderManagementAdmin.cshtml" />
 >>>>>>> abb57ae697f58cdea61a1a6575434614c4882873
+=======
+>>>>>>> parent of b6cac19... pridedu
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Route\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
