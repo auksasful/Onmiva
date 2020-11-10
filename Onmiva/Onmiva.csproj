@@ -149,8 +149,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BillManagementController.cs" />
     <Compile Include="Controllers\BillPaymentController.cs" />
+    <Compile Include="Controllers\ClientReservationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TeamBuildingOffersController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
+    <Compile Include="Controllers\VacationCalendarController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -205,6 +208,14 @@
     <Content Include="Views\BillManagement\EditBill.cshtml" />
     <Content Include="Views\UserManagement\Login.cshtml" />
     <Content Include="Views\UserManagement\Register.cshtml" />
+    <Content Include="Views\ClientReservation\ClientReservation.cshtml" />
+    <Content Include="Views\ClientReservation\AddClientReservation.cshtml" />
+    <Content Include="Views\ClientReservation\DeleteClientReservation.cshtml" />
+    <Content Include="Views\TeamBuildingOffers\TeamBuildingOffers.cshtml" />
+    <Content Include="Views\TeamBuildingOffers\EditTeamBuildingOffers.cshtml" />
+    <Content Include="Views\VacationCalendar\VacationCalendar.cshtml" />
+    <Content Include="Views\VacationCalendar\EditVacationCalendar.cshtml" />
+    <Content Include="Views\VacationCalendar\FilterVacationCalendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
