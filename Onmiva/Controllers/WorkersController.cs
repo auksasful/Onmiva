@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Onmiva.Controllers
 {
-    public class WorkerControler:Controller
+    public class WorkersController : Controller
     {
         public ActionResult Workers()
         {
@@ -16,10 +16,15 @@ namespace Onmiva.Controllers
         {
             return View();
         }
-        public ActionResult WrokerAndWork()
+
+        public ActionResult ChooseWorker()
         {
             return View();
         }
 
+        public ActionResult WorkerAndWork()
+        {
+            return View();
+        }
     }
 }

@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace Onmiva.Controllers
 {
-    public class RouteController : Controller
+    public class RoutesController : Controller
     {
         // GET: Route
-        public ActionResult Route()
+        public ActionResult Routes()
         {
             return View();
         }

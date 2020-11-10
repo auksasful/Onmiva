@@ -149,17 +149,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BillManagementController.cs" />
     <Compile Include="Controllers\BillPaymentController.cs" />
-    <Compile Include="Controllers\RouteController.cs" />
+    <Compile Include="Controllers\RoutesController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
-    <Compile Include="Controllers\WorkerController.cs" />
     <Compile Include="Controllers\ClientReservationController.cs" />
     <Compile Include="Controllers\ContractManagementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderManagementController.cs" />
-    <Compile Include="Controllers\SenderManagementController.cs" />
     <Compile Include="Controllers\TeamBuildingOffersController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Controllers\VacationCalendarController.cs" />
+    <Compile Include="Controllers\WorkersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -230,24 +229,11 @@
     <Content Include="Views\ContractManagement\ContractList.cshtml" />
     <Content Include="Views\ContractManagement\ContractView.cshtml" />
     <Content Include="Views\ContractManagement\CreateContract.cshtml" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <Content Include="Views\Route\Routes.cshtml" />
-=======
     <Content Include="Views\Routes\Routes.cshtml" />
->>>>>>> parent of b6cac19... pridedu
     <Content Include="Views\Workers\Workers.cshtml" />
     <Content Include="Views\Schedule\Schedule.cshtml" />
     <Content Include="Views\Workers\ChooseWorker.cshtml" />
     <Content Include="Views\Workers\WorkerAndWork.cshtml" />
-<<<<<<< HEAD
-    <Content Include="Views\Schedule\ChooseWork.cshtml" />
-=======
-    <Content Include="Views\SenderManagement\SenderManagement.cshtml" />
-    <Content Include="Views\SenderManagement\SenderManagementAdmin.cshtml" />
->>>>>>> abb57ae697f58cdea61a1a6575434614c4882873
-=======
->>>>>>> parent of b6cac19... pridedu
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

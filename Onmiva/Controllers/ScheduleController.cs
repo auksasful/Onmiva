@@ -9,7 +9,7 @@ namespace Onmiva.Controllers
     public class ScheduleController : Controller
     {
         // GET: Schedule
-        public ActionResult Workers()
+        public ActionResult Schedule()
         {
             return View();
         }
