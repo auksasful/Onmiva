@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "OrderList";
+}
+
+<h2>Užsakymų sąrašas</h2>
+
+
+@Html.ActionLink("Sukurti užsakymą", "OrderCreate", "OrderManagement")
+<br>
+@Html.ActionLink("Peržiūrėti užsakymą", "OrderView", "OrderManagement")
+<br>
+@Html.ActionLink("Filtruoti užsakymus", "FilterOrders", "OrderManagement")
+<br>
+@Html.ActionLink("Atgal", "Index", "Home")

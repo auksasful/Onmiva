@@ -151,6 +151,7 @@
     <Compile Include="Controllers\BillPaymentController.cs" />
     <Compile Include="Controllers\ClientReservationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderManagementController.cs" />
     <Compile Include="Controllers\TeamBuildingOffersController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Controllers\VacationCalendarController.cs" />
@@ -216,6 +217,11 @@
     <Content Include="Views\VacationCalendar\VacationCalendar.cshtml" />
     <Content Include="Views\VacationCalendar\EditVacationCalendar.cshtml" />
     <Content Include="Views\VacationCalendar\FilterVacationCalendar.cshtml" />
+    <Content Include="Views\OrderManagement\FilterOrders.cshtml" />
+    <Content Include="Views\OrderManagement\OrderCreate.cshtml" />
+    <Content Include="Views\OrderManagement\OrderEdit.cshtml" />
+    <Content Include="Views\OrderManagement\OrderView.cshtml" />
+    <Content Include="Views\OrderManagement\OrdersList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
