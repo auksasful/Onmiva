@@ -155,6 +155,7 @@
     <Compile Include="Controllers\ContractManagementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderManagementController.cs" />
+    <Compile Include="Controllers\SenderManagementController.cs" />
     <Compile Include="Controllers\TeamBuildingOffersController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Controllers\VacationCalendarController.cs" />
@@ -234,6 +235,8 @@
     <Content Include="Views\Schedule\Schedule.cshtml" />
     <Content Include="Views\Workers\ChooseWorker.cshtml" />
     <Content Include="Views\Workers\WorkerAndWork.cshtml" />
+    <Content Include="Views\SenderManagement\SenderManagement.cshtml" />
+    <Content Include="Views\SenderManagement\SenderManagementAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
