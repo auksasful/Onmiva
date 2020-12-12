@@ -18,7 +18,7 @@ namespace Onmiva.Repos
             {
                 string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
                 MySqlConnection mySqlConnection = new MySqlConnection(conn);
-                string sqlquery = @"INSERT INTO user ( name, surname, email, password, role, mail_verified, activation_code) 
+                string sqlquery = @"INSERT INTO Klientai ( vardas, pavarde, el_pastas, slaptazodis, role, patvirtintas, patvirtinimo_kodas) 
             VALUES (?name, ?surname, ?email, ?password, ?role, ?mailVerified, ?activationCode);";
                 MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
                 mySqlCommand.Parameters.Add("?name", MySqlDbType.VarChar).Value = user.FirstName;
@@ -46,7 +46,7 @@ namespace Onmiva.Repos
             {
             string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
             MySqlConnection mySqlConnection = new MySqlConnection(conn);
-            string sqlquery = @"SELECT usr.password FROM `user` as usr WHERE usr.email = ?email;";
+            string sqlquery = @"SELECT usr.slaptazodis FROM Klientai as usr WHERE usr.el_pastas = ?email;";
             MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
             mySqlCommand.Parameters.Add("?email", MySqlDbType.VarChar).Value = user.EmailID;
             mySqlConnection.Open();
@@ -57,7 +57,7 @@ namespace Onmiva.Repos
 
             foreach (DataRow item in dt.Rows)
             {
-                string pw = Convert.ToString(item["password"]);
+                string pw = Convert.ToString(item["slaptazodis"]);
                 return pw;
             }
             return "";
@@ -77,7 +77,7 @@ namespace Onmiva.Repos
             {
                 string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
                 MySqlConnection mySqlConnection = new MySqlConnection(conn);
-                string sqlquery = @"SELECT COUNT(*) AS count FROM `user` usr WHERE usr.email = ?email;";
+                string sqlquery = @"SELECT COUNT(*) AS count FROM Klientai usr WHERE usr.el_pastas = ?email;";
                 MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
                 mySqlCommand.Parameters.Add("?email", MySqlDbType.VarChar).Value = user.EmailID;
                 mySqlConnection.Open();
@@ -112,7 +112,7 @@ namespace Onmiva.Repos
             {
                 string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
                 MySqlConnection mySqlConnection = new MySqlConnection(conn);
-                string sqlquery = @"SELECT COUNT(*) AS count FROM `user` usr WHERE usr.email = ?email;";
+                string sqlquery = @"SELECT COUNT(*) AS count FROM Klientai usr WHERE usr.el_pastas = ?email;";
                 MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
                 mySqlCommand.Parameters.Add("?email", MySqlDbType.VarChar).Value = email;
                 mySqlConnection.Open();
@@ -138,6 +138,34 @@ namespace Onmiva.Repos
             catch (Exception)
             {
                 return true;
+            }
+        }
+
+
+        public int GetUsersCount()
+        {
+            try
+            {
+                string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
+                MySqlConnection mySqlConnection = new MySqlConnection(conn);
+                string sqlquery = @"SELECT COUNT(*) AS count FROM Klientai;";
+                MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
+                mySqlConnection.Open();
+                MySqlDataAdapter mda = new MySqlDataAdapter(mySqlCommand);
+                DataTable dt = new DataTable();
+                mda.Fill(dt);
+                mySqlConnection.Close();
+
+                foreach (DataRow item in dt.Rows)
+                {
+                    int count = Convert.ToInt32(item["count"]);
+                    return count;
+                }
+                return 1;
+            }
+            catch (Exception)
+            {
+                return 1;
             }
         }
 

@@ -53,7 +53,7 @@ namespace Onmiva.Controllers
                 var isExist = userRepository.CheckUserExists(user);
                 if (isExist)
                 {
-                    ModelState.AddModelError("EmailExist", "Email Already Exist");
+                    ModelState.AddModelError("EmailExist", "Email Already Exists");
                     return View(user);
                 }
                 #endregion
@@ -61,7 +61,14 @@ namespace Onmiva.Controllers
                 #region Generate Activation Code
                 user.ActivationCode = Guid.NewGuid();
                 #endregion
-                user.Role = "Admin";
+
+                if (userRepository.GetUsersCount() == 0)
+                {
+                    user.Role = "Admin";
+                }
+                else {
+                    user.Role = "User";
+                }
                 //Password Hashing
                 #region Password Hashing
                 user.Password = Crypto.Hash(user.Password);
