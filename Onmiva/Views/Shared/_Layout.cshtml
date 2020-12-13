@@ -19,19 +19,31 @@
                 @Html.ActionLink("Onmiva", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Pradinis", "Index", "Home")</li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li> @Html.ActionLink("Prisijungti", "Login", "UserManagement")</li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li> @Html.ActionLink("Registruotis", "Register", "UserManagement")</li>
-                </ul>
 
-                <ul class="nav navbar-nav">
-                    <li> <a>Atsijungti</a></li>
-                </ul>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav">
+                        <li> @Html.ActionLink("Prisijungti", "Login", "UserManagement")</li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li> @Html.ActionLink("Registruotis", "Register", "UserManagement")</li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Pradinis", "Index", "Home")</li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li> @Html.ActionLink("Atsijungti", "Logout", new { controller = "UserManagement" })</li>
+                    </ul>
+
+                    <span class="navbar-text">
+                        <p style="color:white">Prisijungęs kaip @User.Identity.Name</p>
+                    </span>
+
+                }
+
 
             </div>
         </div>
