@@ -23,8 +23,12 @@
         <br>
         @Html.ActionLink("Kontraktų sąrašas", "ContractList", "ContractManagement")
         <br>
-        @Html.ActionLink("Siuntėjų stebėjimo langas(admin)", "SenderManagementAdmin", "SenderManagement")
-        <br>
+        @if (@User.Identity.Name == "admin@gmail.com")
+        {
+            @Html.ActionLink("Siuntėjų stebėjimo langas(admin)", "SenderManagementAdmin", "SenderManagement")
+                            <br>
+                        }
+
         @Html.ActionLink("Siuntėjų peržiūra", "SenderManagement", "SenderManagement")
     </div>
 

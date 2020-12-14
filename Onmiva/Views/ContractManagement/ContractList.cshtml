@@ -1,4 +1,5 @@
 ﻿
+
 @{
     ViewBag.Title = "Kontraktų sąrašas";
 }
@@ -8,10 +9,38 @@
 
 <br>
 @Html.ActionLink("Atgal", "Index", "Home")
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+</head>
+<body>
+    <table class="table table-striped">
+        <thead>
+        <th>Pasirašymo data</th>
+        <th>Pabaigos data</th>
+        <th>Siuntėjas</th>
+        <th>Įmonė</th>
+        @if (@User.Identity.Name == "admin@gmail.com")
+        {<th>Veiksmai</th>}
+        </thead>
 
-<ul class="list-group">
-    <li class="list-group-item"> @Html.ActionLink("Kontraktas nr. 1", "ContractView", "ContractManagement", 1) @Html.ActionLink("Redaguoti kontraktą", "EditContract", "BillManagement", 1) @Html.ActionLink("Pratęsti kontraktą", "ContinueContract", "BillManagement", 1)<button>Šalinti</button></li>
-    <li class="list-group-item">@Html.ActionLink("Kontraktas nr. 2", "ContractView", "ContractManagement", 2) @Html.ActionLink("Redaguoti kontraktą", "EditContract", "BillManagement", 1) @Html.ActionLink("Pratęsti kontraktą", "ContinueContract", "BillManagement",1) <button>Šalinti</button></li>
-</ul>
 
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.pasirasymo_data</td>
+                <td>@i.pabaigos_data</td>
+                <td>@i.siuntejas</td>
+                <td>@i.imone</td>
+                @if (@User.Identity.Name == "admin@gmail.com")
+                {
+                    <td>@Html.ActionLink("Redaguoti", "UpdateContract", new { id = @i.ContractId }) @Html.ActionLink("Pratęsti", "UpdateContractDate", new { id = @i.ContractId })</td>
+}
+            </tr>
+        }
+    </table>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
 
+</html>  
