@@ -1,10 +1,12 @@
 ﻿@model Onmiva.Models.Contract
+@using Onmiva.Models;
 @{
-    ViewBag.Title = "CreateContract";
+    ViewBag.Title = "UpdateContract";
+    Contract kontraktas = ViewBag.kontraktas;
 }
 
-<h2>Sukurti kontraktą</h2>
-
+<h2>Redaguoti kontraktą</h2>
+@Html.ActionLink("Atgal", "ContractList", "ContractManagement")
 
 @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
 {
@@ -16,9 +18,9 @@
 }
 else
 {
-    using (Html.BeginForm())
+    using (Html.BeginForm("EditContract", "ContractManagement"))
     {
-        @Html.AntiForgeryToken()
+
 
         <div class="form-horizontal">
 
@@ -56,11 +58,15 @@ else
                 </div>
             </div>
 
-        
+
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Sukurti" class="btn btn-default" />
+                    <input id="ContractId"
+                           name="ContractId"
+                           type="hidden"
+                           value="@ViewBag.kontraktoid" />
+                    <input type="submit" value="Redaguoti" class="btn btn-default" />
                 </div>
             </div>
         </div> if (ViewBag.Message != null)

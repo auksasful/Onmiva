@@ -1,0 +1,68 @@
+﻿@model Onmiva.Models.Sender_Rating
+@using Onmiva.Models;
+
+@{
+    ViewBag.Title = "SenderReview";
+    Sender siuntejas = ViewBag.siuntejas;
+    List<string> atsiliepimai = ViewBag.atsiliepimai;
+    List<int> ivertinimai = ViewBag.ivertinimai;
+}
+<h2>Siuntėjo @siuntejas.pavadinimas informacija</h2>
+@Html.ActionLink("Atgal", "SenderManagementAdmin", "SenderManagement")
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+</head>
+<div>
+    <table class="table table-striped">
+        <thead>
+        <th>Pavadinimas</th>
+        <th>Tel. nr.</th>
+        <th>Miestas</th>
+        </thead>
+        <tr>
+            <td>@siuntejas.pavadinimas</td>
+            <td>@siuntejas.tel_nr</td>
+            <td>@siuntejas.miestas</td>
+        </tr>
+    </table>
+</div>
+<h2>Siuntėjo @siuntejas.pavadinimas atsiliepimai</h2>
+<table class="table table-striped">
+    @if (atsiliepimai.Count > 0)
+    {
+
+        foreach (string ats in atsiliepimai)
+        {
+            <tr><td>@ats</td></tr>
+        }
+    }
+    else
+    {
+        <tr><td> <p class="text-danger">Kol kas nėra atsiliepimų apie šitą siuntėją</p></td></tr>
+}
+</table>
+
+<h2>Siuntėjo @siuntejas.pavadinimas įvertinimai</h2>
+<table class="table table-striped">
+    @if (ivertinimai.Count > 0)
+    {
+       int suma = 0;
+        foreach (int ivertis in ivertinimai)
+        {
+           suma = suma + ivertis;
+            <tr><td>@ivertis</td></tr>
+        }
+        double vidurkis = Math.Round((double)suma / ivertinimai.Count, 2);
+        <tr><td><b>Vidurkis: @vidurkis </b></td></tr>
+    }
+    else
+    {
+        <tr><td> <p class="text-danger">Kol kas nėra įvertinimų.</p></td></tr>
+    }
+</table>
+
+
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
