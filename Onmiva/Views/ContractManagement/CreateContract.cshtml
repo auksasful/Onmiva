@@ -43,7 +43,7 @@ else
             <div class="form-group">
                 @Html.LabelFor(model => model.pasirasymo_data, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.pasirasymo_data, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.pasirasymo_data, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @type = "date" } })
                     @Html.ValidationMessageFor(model => model.pasirasymo_data, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -51,7 +51,7 @@ else
             <div class="form-group">
                 @Html.LabelFor(model => model.pabaigos_data, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.pabaigos_data, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.pabaigos_data, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @type = "date" } })
                     @Html.ValidationMessageFor(model => model.pabaigos_data, "", new { @class = "text-danger" })
                 </div>
             </div>
