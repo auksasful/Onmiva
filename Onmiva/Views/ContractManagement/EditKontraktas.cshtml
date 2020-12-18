@@ -29,16 +29,28 @@ else
             <div class="form-group">
                 @Html.LabelFor(model => model.siuntejas, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.siuntejas, new { htmlAttributes = new { @class = "form-control" }, @Value = kontraktas.siuntejas })
+                    <select class="form-control" name="siuntejas">
+                        @{List<Sender> siuntejai = new List<Sender>();
+                            siuntejai = ViewBag.siuntejai;
+                            Sender siuntejas = siuntejai.Find(item => item.SenderId == kontraktas.siuntejas);
+                        }
+                                <option selected=@kontraktas.siuntejas>@siuntejas.pavadinimas</option>
+                                @foreach (var siuntejass in ViewBag.siuntejai)
+                                {
+                                    <option value=@siuntejass.SenderId>@siuntejass.pavadinimas</option>
+                                }
+
+                    </select>
                     @Html.ValidationMessageFor(model => model.siuntejas, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.imone, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.imone, new { htmlAttributes = new { @class = "form-control" }, @Value = kontraktas.imone })
-                    @Html.ValidationMessageFor(model => model.imone, "", new { @class = "text-danger" })
+                    <input id="imone"
+                           name="imone"
+                           type="hidden"
+                           value="1" />
                 </div>
             </div>
 
