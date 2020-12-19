@@ -25,12 +25,12 @@ namespace Onmiva.Models
         [Display(Name = "Pasirašymo data")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Pasirašymo data būtina")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public Nullable<System.DateTime> pasirasymo_data { get; set; }
 
         [Display(Name = "Pabaigos data")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public Nullable<System.DateTime> pabaigos_data { get; set; }
 
        
@@ -50,12 +50,12 @@ namespace Onmiva.Models
 
         [Display(Name = "Pasirašymo data")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public string pasirasymo_data { get; set; }
 
         [Display(Name = "Pabaigos data")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public string pabaigos_data { get; set; }
 
       
