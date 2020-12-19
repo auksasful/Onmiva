@@ -44,6 +44,9 @@ namespace Onmiva.Models
         public bool IsMailVerified { get; set; }
         public System.Guid ActivationCode { get; set; }
         public string Role { get; set; }
+
+
+
     }
 
     public class UserMetadata

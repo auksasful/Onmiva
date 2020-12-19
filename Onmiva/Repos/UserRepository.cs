@@ -12,6 +12,44 @@ namespace Onmiva.Repos
     public class UserRepository
     {
 
+
+        public List<User> GetUsers(int from = 0, int count = 10) {
+            List<User> users = new List<User>();
+            try
+            {
+                string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
+                MySqlConnection mySqlConnection = new MySqlConnection(conn);
+                string sqlquery = @"SELECT * FROM Klientai LIMIT " + count + " OFFSET " + from + ";";
+                MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
+                mySqlConnection.Open();
+                MySqlDataAdapter mda = new MySqlDataAdapter(mySqlCommand);
+                DataTable dt = new DataTable();
+                mda.Fill(dt);
+                mySqlConnection.Close();
+
+                foreach (DataRow item in dt.Rows)
+                {
+                    User usr = new User();
+                    usr.FirstName = Convert.ToString(item["vardas"]);
+                    usr.LastName = Convert.ToString(item["pavarde"]);
+                    usr.EmailID = Convert.ToString(item["el_pastas"]);
+                    //string pw = Convert.ToString(item["slaptazodis"]);
+
+                    usr.Role = Convert.ToString(item["role"]);
+                    usr.IsMailVerified = Convert.ToInt32(item["patvirtintas"]) != 0;
+                    usr.UserId = Convert.ToInt32(item["id_Klientas"]);
+                    users.Add(usr);
+                }
+                return users;
+            }
+            catch (Exception)
+            {
+                return users;
+            }
+        }
+
+
+
         public bool Register(User user)
         {
             try

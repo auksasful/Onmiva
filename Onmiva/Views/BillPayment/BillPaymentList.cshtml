@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Onmiva.Models.Bill>
 @{
     ViewBag.Title = "BillPaymentList";
 }
@@ -9,6 +9,20 @@
 @Html.ActionLink("Atgal", "Index", "Home")
 
 <ul class="list-group">
-    <li class="list-group-item"> Sąskaita 1 @Html.ActionLink("Apmokėti sąskaitą", "BillPaymentForm", "BillPayment", 1) </li>
-    <li class="list-group-item"> Sąskaita 2 @Html.ActionLink("Apmokėti sąskaitą", "BillPaymentForm", "BillPayment", 2) </li>
+
+    @foreach (var item in Model)
+    {
+    <li class="list-group-item">
+        Sąskaita nr. @item.NumberId @item.Date
+        @if (item.State == "neapmoketa")
+        {
+            @Html.ActionLink("Apmokėti sąskaitą", "BillPaymentForm", "BillPayment", new { billId = item.NumberId })
+        }
+        else
+        {
+            @item.State
+        }
+    </li>
+    }
+
 </ul>
