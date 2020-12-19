@@ -336,6 +336,7 @@
     <Content Include="Views\Workers\WorkerAndWork.cshtml" />
     <Content Include="Views\SenderManagement\SenderManagement.cshtml" />
     <Content Include="Views\SenderManagement\SenderManagementAdmin.cshtml" />
+    <Content Include="Views\UserManagement\RolesControl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
