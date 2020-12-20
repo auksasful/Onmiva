@@ -50,6 +50,85 @@ namespace Onmiva.Repos
 
 
 
+        public List<string> GetRoles()
+        {
+            List<string> roles = new List<string>();
+            try
+            {
+                string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
+                MySqlConnection mySqlConnection = new MySqlConnection(conn);
+                string sqlquery = @"SELECT DISTINCT role FROM Klientai;";
+                MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
+                mySqlConnection.Open();
+                MySqlDataAdapter mda = new MySqlDataAdapter(mySqlCommand);
+                DataTable dt = new DataTable();
+                mda.Fill(dt);
+                mySqlConnection.Close();
+
+                foreach (DataRow item in dt.Rows)
+                {
+                    roles.Add(Convert.ToString(item["role"]));
+                }
+                return roles;
+            }
+            catch (Exception)
+            {
+                return roles;
+            }
+        }
+
+
+        public string GetUserRole(string email) {
+            string role = "";
+            try
+            {
+                string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
+                MySqlConnection mySqlConnection = new MySqlConnection(conn);
+                string sqlquery = @"SELECT kl.role FROM Klientai kl WHERE kl.el_pastas = ?email";
+                MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
+                mySqlCommand.Parameters.Add("?email", MySqlDbType.VarChar).Value = email;
+                mySqlConnection.Open();
+                MySqlDataAdapter mda = new MySqlDataAdapter(mySqlCommand);
+                DataTable dt = new DataTable();
+                mda.Fill(dt);
+                mySqlConnection.Close();
+
+                foreach (DataRow item in dt.Rows)
+                {
+                    role = Convert.ToString(item["role"]);
+                   
+                }
+                return role;
+            }
+            catch (Exception)
+            {
+                return role;
+            }
+        }
+
+        public bool AssignRole(string email, string roleName) {
+            List<string> roles = new List<string>();
+            try
+            {
+                string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
+                MySqlConnection mySqlConnection = new MySqlConnection(conn);
+                string sqlquery = @"UPDATE Klientai SET role=?role WHERE el_pastas=?email";
+                MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
+                mySqlCommand.Parameters.Add("?role", MySqlDbType.VarChar).Value = roleName;
+                mySqlCommand.Parameters.Add("?email", MySqlDbType.VarChar).Value = email;
+                mySqlConnection.Open();
+                mySqlCommand.ExecuteNonQuery();
+                mySqlConnection.Close();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
         public bool Register(User user)
         {
             try

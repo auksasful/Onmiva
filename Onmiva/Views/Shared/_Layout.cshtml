@@ -34,6 +34,12 @@
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Pradinis", "Index", "Home")</li>
                     </ul>
+                    if (new Onmiva.Controllers.UserManagementController().GetUserRole(User.Identity.Name) == "Admin")
+                    {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Administratoriaus sąsaja", "RolesControl", "UserManagement")</li>
+                    </ul>
+                    }
                     <ul class="nav navbar-nav">
                         <li> @Html.ActionLink("Atsijungti", "Logout", new { controller = "UserManagement" })</li>
                     </ul>
