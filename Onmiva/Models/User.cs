@@ -12,16 +12,16 @@ namespace Onmiva.Models
     {
         public int UserId { get; set; }
 
-        [Display(Name = "First Name")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "First Name Required")]
+        [Display(Name = "Vardas")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Vardas privalomas")]
         public string FirstName { get; set; }
 
-        [Display(Name = "Last Name")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Last Name Required")]
+        [Display(Name = "Pavardė")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Pavardė privaloma")]
         public string LastName { get; set; }
 
-        [Display(Name = "Email ID")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Email ID Required")]
+        [Display(Name = "El. Paštas")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El. paštas privalomas")]
         [DataType(DataType.EmailAddress)]
         public string EmailID { get; set; }
 
@@ -30,15 +30,15 @@ namespace Onmiva.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
         public Nullable<System.DateTime> DateOfBirth { get; set; }
 
-        [Display(Name = "Password")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Password Required")]
+        [Display(Name = "Slaptažodis")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Slaptažodis privalomas")]
         [DataType(DataType.Password)]
-        [MinLength(6, ErrorMessage = "Minimum 6 Characters Required")]
+        [MinLength(6, ErrorMessage = "Reikia bent 6-ių simbolių")]
         public string Password { get; set; }
 
-        [Display(Name = "Confirm Password")]
+        [Display(Name = "Slaptažodžio patvirtinimas")]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Confirm Password and Password do not Match")]
+        [Compare("Password", ErrorMessage = "Slaptažodžiai nesutampa")]
         public string ConfirmPassword { get; set; }
 
         public bool IsMailVerified { get; set; }
@@ -51,16 +51,16 @@ namespace Onmiva.Models
 
     public class UserMetadata
     {
-        [Display(Name = "First Name")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "First Name Required")]
+        [Display(Name = "Vardas")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Vardas privalomas")]
         public string FirstName { get; set; }
 
-        [Display(Name = "Last Name")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Last Name Required")]
+        [Display(Name = "Pavardė")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Pavardė privaloma")]
         public string LastName { get; set; }
 
-        [Display(Name = "Email ID")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Email ID Required")]
+        [Display(Name = "El. Paštas")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El. paštas privalomas")]
         [DataType(DataType.EmailAddress)]
         public string EmailID { get; set; }
 
@@ -69,15 +69,15 @@ namespace Onmiva.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
         public string DateOfBirth { get; set; }
 
-        [Display(Name = "Password")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Password Required")]
+        [Display(Name = "Slaptažodis")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Slaptažodis privalomas")]
         [DataType(DataType.Password)]
-        [MinLength(6, ErrorMessage = "Minimum 6 Characters Required")]
+        [MinLength(6, ErrorMessage = "Reikia bent 6-ių simbolių")]
         public string Password { get; set; }
 
-        [Display(Name = "Confirm Password")]
+        [Display(Name = "Slaptažodžio patvirtinimas")]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Confirm Password and Password do not Match")]
+        [Compare("Password", ErrorMessage = "Slaptažodžiai nesutampa")]
         public string ConfirmPassword { get; set; }
 
     }

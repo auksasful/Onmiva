@@ -1,7 +1,83 @@
-﻿
+﻿@model IEnumerable<Onmiva.Models.User>
 @{
     ViewBag.Title = "RolesControl";
+    List<string> roles = ((Onmiva.Controllers.UserManagementController)this.ViewContext.Controller).GetRoles();
+    int usersCount = ((Onmiva.Controllers.UserManagementController)this.ViewContext.Controller).GetUserCount();
+
 }
 
-<h2>RolesControl</h2>
 
+<h2>Rolių nustatymai</h2>
+
+
+@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+{
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-success">
+            @ViewBag.Message
+        </div>
+    }
+}
+else {
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Message
+        </div>
+    }
+}
+
+
+        <div class="form-group">
+            <ul class="list-group">
+
+                @foreach (var item in Model)
+                {
+                    <li class="list-group-item">
+                        @using (Html.BeginForm("RolesControl", "UserManagement", FormMethod.Post))
+                        {
+                            <input type="hidden" name="email" value="@item.EmailID" />
+                            <p>Vartotojas @item.FirstName @item.LastName - @item.EmailID   Rolė: @item.Role</p>
+                            <select name="roleSelect" class="form-control">
+                                @foreach (var role in roles)
+                                {
+                                    <option>@role</option>
+                                }
+                            </select>
+                            <p>arba įveskite rolės pavadinimą</p> <input class="form-control" name="roleInput" value=""/>
+                            <br>
+                            <button class="btn-primary" type="submit">Pakeisti rolę</button>
+                        }
+                    </li>
+
+
+
+                }
+
+
+
+
+            </ul>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    @for (int i = 1; i <= (int)(usersCount / 20) + 1; i++)
+                    {
+                        <li class="page-item"><a class="page-link" href="@Url.Action("RolesControl", "UserManagement", new {start=(i - 1) * 20, count = 20})">@i</a></li>
+                    }
+
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
