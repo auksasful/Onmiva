@@ -295,6 +295,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\ClientReservation.cs" />
     <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\Sender.cs" />
@@ -306,6 +307,7 @@
     <Compile Include="Models\VacationCalendar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\BillControlController.cs" />
+    <Compile Include="Repos\BillRepository.cs" />
     <Compile Include="Repos\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -380,6 +382,7 @@
     <Content Include="Views\Workers\WorkerAndWork.cshtml" />
     <Content Include="Views\SenderManagement\SenderManagement.cshtml" />
     <Content Include="Views\SenderManagement\SenderManagementAdmin.cshtml" />
+    <Content Include="Views\UserManagement\RolesControl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
