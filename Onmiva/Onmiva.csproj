@@ -253,14 +253,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Bill.cs" />
+    <Compile Include="Models\ClientReservation.cs" />
     <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Bill_Payment.cs" />
     <Compile Include="Models\Sender.cs" />
     <Compile Include="Models\Sender_Rating.cs" />
     <Compile Include="Models\Sender_Review.cs" />
+    <Compile Include="Models\TeamBuildingOffers.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserLogin.cs" />
+    <Compile Include="Models\VacationCalendar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\BillControlController.cs" />
     <Compile Include="Repos\BillRepository.cs" />
