@@ -261,6 +261,7 @@
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Sender.cs" />
     <Compile Include="Models\Sender_Rating.cs" />
     <Compile Include="Models\Sender_Review.cs" />
@@ -269,6 +270,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\BillControlController.cs" />
     <Compile Include="Repos\BillRepository.cs" />
+    <Compile Include="Repos\PaymentRepository.cs" />
     <Compile Include="Repos\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -348,6 +350,7 @@
     <Content Include="Views\BillManagement\ViewBill.cshtml" />
     <Content Include="Views\UserManagement\RolesControl.cshtml" />
     <Content Include="Views\BillManagement\DeleteBill.cshtml" />
+    <Content Include="Views\BillPayment\BillPaymentConfirmed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

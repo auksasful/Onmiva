@@ -16,7 +16,7 @@
         Sąskaita nr. @item.NumberId @item.Date
         @if (item.State == "neapmoketa")
         {
-            @Html.ActionLink("Apmokėti sąskaitą", "BillPaymentForm", "BillPayment", new { billId = item.NumberId })
+        <a href="@Url.Action("BillPaymentForm", "BillPayment", new { billId = item.NumberId })">Apmokėti sąskaitą</a>
         }
         else
         {
