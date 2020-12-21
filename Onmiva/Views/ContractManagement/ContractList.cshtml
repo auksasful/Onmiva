@@ -1,5 +1,4 @@
-﻿
-
+﻿@using Onmiva.Models;
 @{
     ViewBag.Title = "Kontraktų sąrašas";
 }
@@ -19,23 +18,26 @@
         <th>Pasirašymo data</th>
         <th>Pabaigos data</th>
         <th>Siuntėjas</th>
-        <th>Įmonė</th>
         @if (@User.Identity.Name == "admin@gmail.com")
-        {<th>Veiksmai</th>}
+        {
+            <th>Veiksmai</th>
+}
         </thead>
 
 
         @foreach (var i in Model)
         {
+            List<Sender> siuntejai = new List<Sender>();
+            siuntejai = ViewBag.siuntejai;
+            Sender siuntejas = siuntejai.Find(item => item.SenderId == i.siuntejas);
             <tr>
                 <td>@i.pasirasymo_data</td>
                 <td>@i.pabaigos_data</td>
-                <td>@i.siuntejas</td>
-                <td>@i.imone</td>
+                <td>@siuntejas.pavadinimas</td>
                 @if (@User.Identity.Name == "admin@gmail.com")
                 {
                     <td>@Html.ActionLink("Redaguoti", "UpdateContract", new { id = @i.ContractId }) @Html.ActionLink("Pratęsti", "UpdateContractDate", new { id = @i.ContractId })</td>
-}
+                }
             </tr>
         }
     </table>

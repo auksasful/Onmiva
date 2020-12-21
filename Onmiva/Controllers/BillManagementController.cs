@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Onmiva.Models;
+using Onmiva.Repos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,14 @@ namespace Onmiva.Controllers
 {
     public class BillManagementController : Controller
     {
+
+        UserRepository userRepository = new UserRepository();
+        BillRepository billRepository = new BillRepository();
+
         // GET: BillManagement
-        public ActionResult BillManagement()
+        public ActionResult BillManagement(int start = 0, int count = 20)
         {
-            return View();
+            return View(userRepository.GetUsers(start, count));
         }
 
         public ActionResult BillPaymentStateList()
@@ -29,9 +35,24 @@ namespace Onmiva.Controllers
             return View();
         }
 
-        public ActionResult UserBillsList()
+        public ActionResult ViewBill(int billId)
         {
-            return View();
+            return View(billRepository.GetUserBill(billId));
+        }
+
+
+        public ActionResult UserBillsList(int userId = 0)
+        {
+            return View(billRepository.GetUserBills(userId));
+        }
+
+        public List<User> GetUsers(int from, int count) {
+            return userRepository.GetUsers(from, count);
+        }
+
+
+        public int GetUserCount() {
+            return userRepository.GetUsersCount();
         }
     }
 }

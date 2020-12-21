@@ -19,10 +19,16 @@ namespace Onmiva.Controllers
         // GET: ContractManagement
         public ActionResult CreateContract()
         {
+            List<Sender> siuntejai = new List<Sender>();
+            siuntejai = Siunteju_Sarasas();
+            ViewBag.siuntejai = siuntejai;
             return View();
         }
         public ActionResult ContractList()
         {
+            List<Sender> siuntejai = new List<Sender>();
+            siuntejai = Siunteju_Sarasas();
+            ViewBag.siuntejai = siuntejai;
             List<Contract> kontraktai = new List<Contract>();
             string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
             using (MySqlConnection mySqlConnection = new MySqlConnection(conn))
@@ -51,6 +57,7 @@ namespace Onmiva.Controllers
                 }
             }
             ViewBag.KontraktuSarasas = kontraktai;
+            
             return View(kontraktai);
         }
     
@@ -62,7 +69,10 @@ namespace Onmiva.Controllers
         [HttpPost]
         public ActionResult CreateContract(Contract contract)
         {            
-                string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
+                List<Sender> siuntejai = new List<Sender>();
+            siuntejai = Siunteju_Sarasas();
+            ViewBag.siuntejai = siuntejai;
+            string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
                 MySqlConnection mySqlConnection = new MySqlConnection(conn);
                 string sqlquery = @"INSERT INTO Kontraktai ( pasirasymo_data, galioja_iki, fk_Siuntu_imoneid, fk_Siuntejasid) 
             VALUES (?start_date, ?end_date, ?imone, ?siuntejas);";
@@ -82,6 +92,38 @@ namespace Onmiva.Controllers
             }
             return View();
 
+        }
+
+        public List<Sender> Siunteju_Sarasas()
+        {
+            List<Sender> siuntejai = new List<Sender>();
+            string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
+            using (MySqlConnection mySqlConnection = new MySqlConnection(conn))
+            {
+                string query = "SELECT * FROM Siuntejai";
+                using (MySqlCommand cmd = new MySqlCommand(query))
+                {
+                    cmd.Connection = mySqlConnection;
+                    mySqlConnection.Open();
+                    using (MySqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            siuntejai.Add(new Sender
+                            {
+                                SenderId = Convert.ToInt32(sdr["id"]),
+                                pavadinimas = sdr["pavadinimas"].ToString(),
+                                tel_nr = sdr["tel_nr"].ToString(),
+                                miestas = sdr["miestas"].ToString()
+
+                            }); ;
+                        }
+                    }
+                    mySqlConnection.Close();
+                }
+            }
+            ViewBag.KontraktuSarasas = siuntejai;
+            return siuntejai;
         }
 
         public List<Contract> KontraktuSarasas()
@@ -120,6 +162,9 @@ namespace Onmiva.Controllers
 
         public ActionResult UpdateContract(int? id)
         {
+            List<Sender> siuntejai = new List<Sender>();
+            siuntejai = Siunteju_Sarasas();
+            ViewBag.siuntejai = siuntejai;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -137,6 +182,9 @@ namespace Onmiva.Controllers
 
         public ActionResult EditContract(Contract contract)
         {
+            List<Sender> siuntejai = new List<Sender>();
+            siuntejai = Siunteju_Sarasas();
+            ViewBag.siuntejai = siuntejai;
             string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
             MySqlConnection mySqlConnection = new MySqlConnection(conn);
             string sqlquery = @"UPDATE Kontraktai SET pasirasymo_data = ?start_date, galioja_iki = ?end_date, 

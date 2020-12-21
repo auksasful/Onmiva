@@ -1,12 +1,7 @@
 ﻿@model  Onmiva.Models.Bill
 @{
-    ViewBag.Title = "BillView";
+    ViewBag.Title = "Sąskaita " + Model.NumberId;
 }
-
-
-<br>
-@Html.ActionLink("Atgal", "Index", "Home")
-<br>
 
 <h2>Sąskaita @Model.NumberId</h2>
 

@@ -8,15 +8,16 @@ namespace Onmiva.Models
 {
     public class UserLogin
     {
-        [Display(Name = "Email ID")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Email ID Required")]
+        [Display(Name = "El paštas")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El paštas privalomas")]
         public string EmailID { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Password Required")]
+        [Display(Name = "Slaptažodis")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Slaptažodis privalomas")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "Remember Me")]
+        [Display(Name = "Prisiminti mane")]
         public bool RememberMe { get; set; }
     }
 }

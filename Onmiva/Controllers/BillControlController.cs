@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Onmiva.Repos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,15 +9,18 @@ namespace Onmiva.Views.BillControl
 {
     public class BillControlController : Controller
     {
+
+        UserRepository userRepository = new UserRepository();
+        BillRepository billRepository = new BillRepository();
         // GET: BillControl
         public ActionResult BillControl()
         {
-            return View();
+            return View(billRepository.GetUserBills(User.Identity.Name));
         }
 
-        public ActionResult BillView()
+        public ActionResult BillView(int billId)
         {
-            return View();
+            return View(billRepository.GetUserBill(billId));
         }
     }
 }

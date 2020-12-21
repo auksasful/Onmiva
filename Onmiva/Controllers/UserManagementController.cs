@@ -53,7 +53,7 @@ namespace Onmiva.Controllers
                 var isExist = userRepository.CheckUserExists(user);
                 if (isExist)
                 {
-                    ModelState.AddModelError("EmailExist", "Email Already Exists");
+                    ModelState.AddModelError("EmailExist", "Toks el. paštas jau egzistuoja");
                     return View(user);
                 }
                 #endregion
@@ -85,12 +85,11 @@ namespace Onmiva.Controllers
 
                     //send Email to user
                     // sendVerificationLinkEmail(user.EmailID , user.ActivationCode.ToString());
-                    message = "Register Successfully Done. Account Activation Link" +
-                        "has been sent to your email" + user.EmailID;
+                    message = "Registracija sėkminga. El. paštas: " + user.EmailID;
                     Status = true;
                 }
                 else {
-                    message = "Register fail";
+                    message = "Registracija nepavyko";
                     Status = false;
                 }
 
@@ -100,7 +99,7 @@ namespace Onmiva.Controllers
             }
             else
             {
-                message = "Invalid Request";
+                message = "Klaidinga užklausa";
             }
             ViewBag.Message = message;
             ViewBag.Status = Status;
@@ -167,7 +166,8 @@ namespace Onmiva.Controllers
                 }
                 else
                 {
-                    message = "Invalid Credential Provided";
+                    message = "Neteisingi prisijungimo duomenys";
+                    ViewBag.Status = false;
                 }
             }
             
@@ -175,6 +175,7 @@ namespace Onmiva.Controllers
             ViewBag.Message = message;
             return View();
         }
+
 
 
         //logout
@@ -185,12 +186,82 @@ namespace Onmiva.Controllers
         }
 
 
+
+        public ActionResult RolesControl(int start = 0, int count = 20) {
+            if (userRepository.GetUserRole(User.Identity.Name) != "Admin") {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(userRepository.GetUsers(start, count));
+        }
+
+        [HttpPost]
+        public ActionResult RolesControl(string email, string roleSelect, string roleInput)
+        {
+
+            if (email == User.Identity.Name) {
+                ViewBag.Message = "Negalima priskirti rolės sau";
+                ViewBag.Status = false;
+                return View(userRepository.GetUsers(0, 20));
+            }
+
+            if (userRepository.GetUserRole(User.Identity.Name) != "Admin")
+            {
+                ViewBag.Message = "Roles priskirti gali tik administratorius";
+                ViewBag.Status = false;
+                return View(userRepository.GetUsers(0, 20));
+            }
+
+
+            if (roleInput == "")
+            {
+                if (userRepository.AssignRole(email, roleSelect))
+                {
+                    ViewBag.Message = "Rolė vartotojui " + email + " priskirta sėkmingai";
+                    ViewBag.Status = true;
+                }
+                else {
+                    ViewBag.Message = "Rolės priskirti nepavyko";
+                    ViewBag.Status = false;
+                }
+            }
+            else {
+                if (userRepository.AssignRole(email, roleInput))
+                {
+                    ViewBag.Message = "Rolė vartotojui " + email + " sukurta ir priskirta sėkmingai";
+                    ViewBag.Status = true;
+                }
+                else {
+                    ViewBag.Message = "Rolės priskirti nepavyko";
+                    ViewBag.Status = true;
+                }
+            }
+            return View(userRepository.GetUsers(0, 20));
+        }
+
+
+        public List<string> GetRoles() {
+            return userRepository.GetRoles();
+        }
+
+
         //verify Email
         [NonAction]
         public bool IsEmailExist(string emailID)
         {
 
             return userRepository.CheckEmailExists(emailID);
+        }
+
+        public int GetUserCount()
+        {
+            return userRepository.GetUsersCount();
+        }
+
+
+        public string GetUserRole(string email)
+        {
+            return userRepository.GetUserRole(email);
         }
 
         //Verify Email Link
