@@ -3,10 +3,44 @@
     ViewBag.Title = "TeamBuildingOffers";
 }
 
-<h2>TeamBuildingOffers</h2>
 
-
-<br>
-@Html.ActionLink("Pasiulymu redagavimo langas", "EditTeamBuildingOffers", "TeamBuildingOffers")
 <br>
 @Html.ActionLink("Atgal i pagrindini puslapi", "Index", "Home")
+
+
+
+
+<h2>Team Building Pasiulymu sąrašas</h2>
+
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+</head>
+<body>
+    <table class="table table-striped">
+        <thead>
+        <th>Data</th>
+        <th>Pasiulymas</th>
+        <th>Preliminarios islaidos</th>
+        <th>Veiksmai</th>
+
+        </thead>
+
+
+        @foreach (var i in Model)
+        {
+        <tr>
+            <td>@i.data</td>
+            <td>@i.pasiulymas</td>
+            <td>@i.islaidos</td>
+            <td>@Html.ActionLink("Redaguoti", "EditTeamBuildingOffers", "TeamBuildingOffers") </td>
+
+        </tr>
+        }
+    </table>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+
+</html>

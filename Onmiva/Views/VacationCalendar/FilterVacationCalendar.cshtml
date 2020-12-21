@@ -9,3 +9,41 @@
 
 <br>
 @Html.ActionLink("Atgal i pagrindini kalendoriu", "VacationCalendar", "VacationCalendar")
+
+
+
+
+<h2>Filtravimas</h2>
+
+
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+</head>
+<body>
+
+<table class="table table-striped">
+    <thead>
+    <th> @Html.ActionLink("Filtruoti pagal Varda", "FilterVacationCalendar", new { sortOrder = ViewBag.NameSortParm })</th>
+    <th>@Html.ActionLink("Filtruoti pagal Pavarde", "FilterVacationCalendar", new { sortOrder = ViewBag.CitySortParm })</th>
+    </thead>
+
+        
+        
+ 
+    @foreach (var i in Model)
+    {
+        string pav = i.vardas;
+        <tr>
+            
+            <td>@i.vardas</td>
+            <td>@i.pavarde</td>
+        </tr>}
+            
+</table>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+
+</html>  

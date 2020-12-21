@@ -3,13 +3,46 @@
     ViewBag.Title = "ClientReservation";
 }
 
-<h2>Klientų rezervacijos įvairiems klausimas langas</h2>
+<h2>Klientų rezervacijos įvairiems klausimas sarasas</h2>
 
 
 <br>
 @Html.ActionLink("Naujos rezervacijos langas", "AddClientReservation", "ClientReservation")
 <br>
-@Html.ActionLink("Rezervacijos istrynimo langas", "DeleteClientReservation", "ClientReservation")
-<br>
 @Html.ActionLink("Atgal i pagrindini puslapi", "Index", "Home")
 
+
+
+
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+</head>
+<body>
+<table class="table table-striped">
+    <thead>
+    <th>Pavadinimas</th>
+    <th>Kliento vardas</th>
+    <th>Kliento pavarde</th>
+    <th>Data</th>
+  
+    </thead>
+
+
+    @foreach (var i in Model)
+    {
+        <tr>
+            <td>@i.pavadinimas</td>
+            <td>@i.klientoVardas</td>
+            <td>@i.klientoPavarde</td>
+            <td>@i.rezervacijos_data</td>
+         
+        </tr>
+    }
+</table>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+
+</html>  

@@ -3,12 +3,49 @@
     ViewBag.Title = "VacationCalendar";
 }
 
-<h2>VacationCalendar</h2>
 
 
 <br>
 @Html.ActionLink("Atidaryti filtravimo langa", "FilterVacationCalendar", "VacationCalendar")
-<br>
-@Html.ActionLink("Atidaryti redagavimo langa", "EditVacationCalendar", "VacationCalendar")
+
 <br>
 @Html.ActionLink("Atgal i pagrindini puslapi", "Index", "Home")
+
+
+
+<h2>Atostogu sąrašas</h2>
+
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+</head>
+<body>
+<table class="table table-striped">
+    <thead>
+    <th>Vardas</th>
+    <th>Pavarde</th>
+    <th>Pradzios data</th>
+    <th>Pabaigos data</th>
+
+    </thead>
+
+
+    @foreach (var i in Model)
+    {
+        <tr>
+            <td>@i.vardas</td>
+            <td>@i.pavarde</td>
+            <td>@i.pradzios_data</td>
+            <td>@i.pabaigos_data</td>
+
+        </tr>
+    }
+</table>
+
+<input type="date" id="birthday" name="birthday">
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+
+</html>
