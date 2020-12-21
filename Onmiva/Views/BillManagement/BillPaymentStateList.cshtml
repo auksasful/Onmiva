@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Onmiva.Models.Bill>
 @{
     ViewBag.Title = "BillPaymentStateList";
 }
@@ -9,7 +9,23 @@
 
 
 <ul class="list-group">
-    <li class="list-group-item"> Sąskaita 1 - Apmokėta</li>
-    <li class="list-group-item"> Sąskaita 2 - Neapmokėta </li>
-</ul>
+    @foreach (var item in Model)
+    {
+    <li class="list-group-item">
+        Sąskaita @item.NumberId Sukurta: @item.Date Apmokėti iki: @item.PayUntil
+        @if (item.State == "apmoketa")
+        {
+            <span style="color:green">Apmokėta</span>
+        }
+        else if (item.State == "neapmoketa")
+        {
+            <span style="color:red">Neapmokėta</span>
+        }
+        else
+        {
+            <span style="color:yellowgreen">Laukiama apmokėjimo patvirtinimo</span>
+        }
+    </li> 
+    }
+    </ul>
 
