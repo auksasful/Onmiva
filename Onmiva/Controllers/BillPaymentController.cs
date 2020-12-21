@@ -34,7 +34,15 @@ namespace Onmiva.Controllers
             if (paymentRepository.AddPayment(payment))
             {
                 ViewBag.Message = "Apmokėjimas patvirtintas";
+                
                 ViewBag.Status = true;
+                Bill bill = billRepository.GetUserBill(payment.Bill);
+                if (bill.Sum <= paymentRepository.GetPaymentSum(payment.Bill))
+                {
+                    bill.State = "apmoketa";
+                    bill.StateId = 1;
+                    billRepository.EditBill(bill);
+                }
             }
             else {
                 ViewBag.Message = "Apmokėjimas nepavyko!";

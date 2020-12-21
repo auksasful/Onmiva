@@ -12,7 +12,7 @@ namespace Onmiva.Repos
     public class BillRepository
     {
 
-        public List<Bill> GetUserBills(int userId) {
+        public List<Bill> GetUserBills(DateTime? startDate, DateTime? endDate, int userId) {
             List<Bill> bills = new List<Bill>();
 
             try
@@ -20,8 +20,11 @@ namespace Onmiva.Repos
                 string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
                 MySqlConnection mySqlConnection = new MySqlConnection(conn);
                 string sqlquery = @"SELECT * FROM Saskaitos sk INNER JOIN Siuntu_imones si ON sk.fk_Siuntu_imoneid = si.id
-INNER JOIN Saskaitos_busenos sb ON sk.busena = sb.id_Saskaitos_busenos WHERE sk.fk_Klientasid_Klientas = " + userId + ";";
+INNER JOIN Saskaitos_busenos sb ON sk.busena = sb.id_Saskaitos_busenos WHERE sk.fk_Klientasid_Klientas = " + userId + " AND sk.data >= IFNULL(DATE(?startDate)," +
+" sk.data) AND sk.data <= IFNULL(DATE(?endDate), sk.data);";
                 MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
+                mySqlCommand.Parameters.Add("?startDate", MySqlDbType.DateTime).Value = startDate;
+                mySqlCommand.Parameters.Add("?endDate", MySqlDbType.DateTime).Value = endDate;
                 mySqlConnection.Open();
                 MySqlDataAdapter mda = new MySqlDataAdapter(mySqlCommand);
                 DataTable dt = new DataTable();
@@ -284,7 +287,7 @@ si.id INNER JOIN Saskaitos_busenos sb ON sk.busena = sb.id_Saskaitos_busenos WHE
                 MySqlConnection mySqlConnection = new MySqlConnection(conn);
                 string sqlquery = @"DELETE FROM saskaitos WHERE saskaitos.nr = ?id";
                 MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
-                mySqlCommand.Parameters.Add("?id", MySqlDbType.Double).Value = id;
+                mySqlCommand.Parameters.Add("?id", MySqlDbType.Int32).Value = id;
                 mySqlConnection.Open();
                 mySqlCommand.ExecuteNonQuery();
                 mySqlConnection.Close();
@@ -298,7 +301,7 @@ si.id INNER JOIN Saskaitos_busenos sb ON sk.busena = sb.id_Saskaitos_busenos WHE
         }
 
 
-        public List<Bill> GetAllBills() {
+        public List<Bill> GetAllBills(int userId) {
             List<Bill> bills = new List<Bill>();
 
             try
@@ -306,8 +309,9 @@ si.id INNER JOIN Saskaitos_busenos sb ON sk.busena = sb.id_Saskaitos_busenos WHE
                 string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
                 MySqlConnection mySqlConnection = new MySqlConnection(conn);
                 string sqlquery = @"SELECT * FROM Saskaitos sk INNER JOIN Siuntu_imones si ON sk.fk_Siuntu_imoneid = si.id
-INNER JOIN Saskaitos_busenos sb ON sk.busena = sb.id_Saskaitos_busenos";
+INNER JOIN Saskaitos_busenos sb ON sk.busena = sb.id_Saskaitos_busenos WHERE sk.fk_Klientasid_Klientas = ?id";
                 MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
+                mySqlCommand.Parameters.Add("?id", MySqlDbType.Int32).Value = userId;
                 mySqlConnection.Open();
                 MySqlDataAdapter mda = new MySqlDataAdapter(mySqlCommand);
                 DataTable dt = new DataTable();

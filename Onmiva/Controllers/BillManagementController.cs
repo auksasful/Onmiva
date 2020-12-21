@@ -20,9 +20,9 @@ namespace Onmiva.Controllers
             return View(userRepository.GetUsers(start, count));
         }
 
-        public ActionResult BillPaymentStateList()
+        public ActionResult BillPaymentStateList(int userId)
         {
-            return View(billRepository.GetAllBills());
+            return View(billRepository.GetAllBills(userId));
         }
 
         public ActionResult CreateBill()
@@ -123,9 +123,9 @@ namespace Onmiva.Controllers
         }
 
 
-        public ActionResult UserBillsList(int userId = 0)
+        public ActionResult UserBillsList(DateTime? startDate, DateTime? endDate, int userId = 0)
         {
-            return View(billRepository.GetUserBills(userId));
+            return View(billRepository.GetUserBills(startDate, endDate, userId));
         }
 
         public List<User> GetUsers(int from, int count) {
