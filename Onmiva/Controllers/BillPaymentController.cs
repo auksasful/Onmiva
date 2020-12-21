@@ -23,13 +23,13 @@ namespace Onmiva.Controllers
         [HttpGet]
         public ActionResult BillPaymentForm(int billId)
         {
-            Payment pay = paymentRepository.GetPaymentByBill(billId);
+            Bill_Payment pay = paymentRepository.GetPaymentByBill(billId);
             return View(pay);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult BillPaymentForm(Payment payment)
+        public ActionResult BillPaymentForm(Bill_Payment payment)
         {
             if (paymentRepository.AddPayment(payment))
             {
@@ -39,8 +39,15 @@ namespace Onmiva.Controllers
                 Bill bill = billRepository.GetUserBill(payment.Bill);
                 if (bill.Sum <= paymentRepository.GetPaymentSum(payment.Bill))
                 {
-                    bill.State = "apmoketa";
-                    bill.StateId = 1;
+                    if (payment.PaymentMethod == "banko pavedimu")
+                    {
+                        bill.State = "apmoketa";
+                        bill.StateId = 1;
+                    }
+                    else {
+                        bill.State = "laukiama apmokejimo patvirtinimo";
+                        bill.StateId = 3;
+                    }
                     billRepository.EditBill(bill);
                 }
             }

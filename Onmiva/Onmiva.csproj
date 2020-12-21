@@ -255,7 +255,7 @@
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\Bill_Payment.cs" />
     <Compile Include="Models\Sender.cs" />
     <Compile Include="Models\Sender_Rating.cs" />
     <Compile Include="Models\Sender_Review.cs" />

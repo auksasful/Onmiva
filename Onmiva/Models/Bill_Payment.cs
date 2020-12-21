@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Onmiva.Models
 {
-    public class Payment
+    public class Bill_Payment
     {
         [Display(Name = "Numeris")]
         public int Id { get; set; }
@@ -17,8 +17,6 @@ namespace Onmiva.Models
 
 
         [Display(Name = "Data")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:YYYY-MM-DD}")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Data negali būti tuščia")]
         public DateTime Date { get; set; }
 

@@ -13,7 +13,7 @@ namespace Onmiva.Repos
     {
 
 
-        public bool AddPayment(Payment payment) {
+        public bool AddPayment(Bill_Payment payment) {
             try
             {
                 string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
@@ -75,8 +75,8 @@ namespace Onmiva.Repos
         }
 
 
-        public Payment GetPaymentByBill(int id) {
-            Payment pay = new Payment();
+        public Bill_Payment GetPaymentByBill(int id) {
+            Bill_Payment pay = new Bill_Payment();
 
             try
             {

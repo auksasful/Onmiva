@@ -18,8 +18,6 @@ namespace Onmiva.Models
 
 
         [Display(Name = "Data")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:YYYY-MM-DD}")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Data negali būti tuščia")]
         public DateTime Date { get; set; }
 
