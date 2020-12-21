@@ -22,7 +22,7 @@ namespace Onmiva.Controllers
 
         public ActionResult BillPaymentStateList()
         {
-            return View();
+            return View(billRepository.GetAllBills());
         }
 
         public ActionResult CreateBill()
@@ -30,10 +30,92 @@ namespace Onmiva.Controllers
             return View();
         }
 
-        public ActionResult EditBill()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateBill(Bill bill)
         {
+
+
+
+            if (billRepository.CreateBill(bill))
+            {
+                ViewBag.Status = true;
+                ViewBag.Message = "Sąskaita užsakymui " + bill.Order + " sukurta";
+            }
+            else {
+                ViewBag.Status = false;
+                ViewBag.Message = "Nepavyko sukurti sąskaitos";
+            }
             return View();
         }
+
+        public ActionResult EditBill()
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult EditBill(int id)
+        {
+            Bill bill = billRepository.GetUserBill(id);
+            return View(bill);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditBill(int NumberId, string PayComment, decimal Sum, int StateId, DateTime PayUntil)
+        {
+
+            Bill bill = new Bill();
+            bill.NumberId = NumberId;
+            bill.PayComment = PayComment;
+            bill.Sum = Sum;
+            bill.StateId = StateId;
+            bill.PayUntil = PayUntil;
+           
+
+            if (billRepository.EditBill(bill))
+            {
+                ViewBag.Status = true;
+                ViewBag.Message = "Sąskaita paredaguota";
+            }
+            else
+            {
+                ViewBag.Status = false;
+                ViewBag.Message = "Nepavyko redaguoti sąskaitos";
+            }
+
+
+            return View(bill);
+        }
+
+
+        [HttpGet]
+        public ActionResult DeleteBill(int BillId)
+        {
+            Bill bill = billRepository.GetUserBill(BillId);
+            return View(bill);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteBill(Bill bill, int NumberId)
+        {
+            if (billRepository.DeleteBill(NumberId))
+            {
+                ViewBag.Status = true;
+                ViewBag.Message = "Sąskaita " + NumberId + " ištrinta";
+            }
+            else
+            {
+                ViewBag.Status = false;
+                ViewBag.Message = "Nepavyko ištrinti sąskaitos " + NumberId;
+            }
+
+            return View(bill);
+        }
+
 
         public ActionResult ViewBill(int billId)
         {
@@ -54,5 +136,18 @@ namespace Onmiva.Controllers
         public int GetUserCount() {
             return userRepository.GetUsersCount();
         }
+
+
+
+        public List<Order> GetOrdersWithoutBill() {
+            return billRepository.GetOrdersWithoutBill();
+        }
+
+
+
+        public List<string> GetBillStateList() {
+            return billRepository.GetBillStateList();
+        }
+
     }
 }

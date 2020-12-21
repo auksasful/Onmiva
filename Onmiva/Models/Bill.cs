@@ -30,16 +30,25 @@ namespace Onmiva.Models
 
         [Display(Name = "Apmokėti iki")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:YYYY-MM-DD}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Laukas Apmokėti iki negali būti tuščias")]
         public DateTime PayUntil { get; set; }
 
         [Display(Name = "Būsena")]
         public string State { get; set; }
+        public int StateId { get; set; }
 
         [Display(Name = "Siuntimo įmonė")]
         public string SendingCompany { get; set; }
+        public int SendingCompanyId { get; set; }
 
+        [Display(Name = "Užsakymas")]
+        public int OrderId { get; set; }
+
+        [Display(Name = "Užsakymas")]
+        public string Order { get; set; }
+
+        
 
     }
 }

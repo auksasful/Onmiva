@@ -10,14 +10,20 @@
 <br>
 @Html.ActionLink("Atgal", "BillManagement", "BillManagement")
 
+
 <ul class="list-group">
 
     @foreach (var item in Model)
     {
-    <li class="list-group-item">
-        <a href="@Url.Action("ViewBill", "BillManagement", new { billId = item.NumberId } )">Sąskaita nr. @item.NumberId @item.Date </a>
-        @Html.ActionLink("Redaguoti sąskaitą", "EditBill", "BillManagement", 1) <button>Šalinti</button>
-    </li>
+            <li class="list-group-item">
+                <a href="@Url.Action("ViewBill", "BillManagement", new { billId = item.NumberId })">Sąskaita nr. @item.NumberId @item.Date </a>
+                <a href="@Url.Action("EditBill", "BillManagement", new { id = item.NumberId })">Redaguoti sąskaitą</a>
+                <a href="@Url.Action("DeleteBill", "BillManagement", new { BillId = item.NumberId })">Šalinti</a>
+                      
+
+            </li>
     }
 
 </ul>
+
+
