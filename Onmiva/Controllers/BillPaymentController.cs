@@ -21,9 +21,14 @@ namespace Onmiva.Controllers
         }
 
         [HttpGet]
-        public ActionResult BillPaymentForm(int billId)
+        public ActionResult BillPaymentForm(int? billId)
         {
-            Bill_Payment pay = paymentRepository.GetPaymentByBill(billId);
+            if (billId == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            Bill_Payment pay = paymentRepository.GetPaymentByBill((int)billId);
             return View(pay);
         }
 

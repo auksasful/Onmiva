@@ -4,12 +4,12 @@
     ViewBag.Title = "CreateBill";
     List<Onmiva.Models.Order> orders = ((Onmiva.Controllers.BillManagementController)this.ViewContext.Controller).GetOrdersWithoutBill();
 }
-
+<br><br>
 <h2>Sąskaitos sukūrimo forma</h2>
 <br>
 
 
-@Html.ActionLink("Atgal", "UserBillsList", "BillManagement")
+@Html.ActionLink("Atgal", "BillManagement", "BillManagement")
 
 
 @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
@@ -33,57 +33,57 @@ else
 }
 @using (Html.BeginForm())
 {
-@Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
+        <div class="form-horizontal">
+            <!-- <input type="hidden" name="NumberId" value=" />-->
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Order, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="form-control" name="orderId">
+                        <option value="">Pasirinkite...</option>
+                        @foreach (var val in orders)
+                        {
+                            <option value="@val.Id">@val.Date - @val.Company - @val.Client - @val.Sum€ - @val.State</option>
+                        }
+                    </select>
 
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.Order, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <select class="form-control" name="OrderId">
-                <option value="">Pasirinkite...</option>
-                @foreach (var val in orders)
-                {
-                    <option value="@val.Id">@val.Date - @val.Company - @val.Client - @val.Sum€ - @val.State</option>
-                }
-            </select>
+                </div>
+            </div>
 
+            <div class="form-group">
+                @Html.LabelFor(model => model.PayComment, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PayComment, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PayComment, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sum, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Sum, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Sum, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PayUntil, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PayUntil, new { htmlAttributes = new { @class = "datepicker" } })
+                    @Html.ValidationMessageFor(model => model.PayUntil, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Sukurti" class="btn btn-default" />
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.PayComment, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.PayComment, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.PayComment, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Sum, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Sum, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Sum, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.PayUntil, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.PayUntil, new { htmlAttributes = new { @class = "datepicker" } })
-            @Html.ValidationMessageFor(model => model.PayUntil, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Sukurti" class="btn btn-default" />
-        </div>
-    </div>
-</div>
-
-    }
+}
 
 
 @section Scripts{

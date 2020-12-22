@@ -113,8 +113,8 @@ sk.fk_Klientasid_Klientas = kl.id_Klientas WHERE kl.el_pastas = '" + email + "';
                 mySqlCommand.Parameters.Add("?reason", MySqlDbType.VarChar).Value = bill.PayComment;
                 mySqlCommand.Parameters.Add("?stateId", MySqlDbType.Int32).Value = 2;
                 mySqlCommand.Parameters.Add("?clientId", MySqlDbType.Int32).Value = order.ClientId;
-                mySqlCommand.Parameters.Add("?orderId", MySqlDbType.Int32).Value = order.Id;
-                mySqlCommand.Parameters.Add("?senderId", MySqlDbType.Int32).Value = order.CompanyId;
+                mySqlCommand.Parameters.Add("?orderId", MySqlDbType.Int32).Value = bill.OrderId;
+                mySqlCommand.Parameters.Add("?senderId", MySqlDbType.Int32).Value = bill.SendingCompanyId;
                 mySqlConnection.Open();
                 mySqlCommand.ExecuteNonQuery();
                 mySqlConnection.Close();
@@ -168,7 +168,7 @@ INNER JOIN Siuntu_imones im ON uz.fk_Siuntu_imoneid = im.id WHERE sas.fk_Uzsakym
 
         }
 
-        public Bill GetUserBill(int billId)
+        public Bill GetUserBill(int? billId)
         {
             Bill bill = new Bill();
 
@@ -233,7 +233,7 @@ si.id INNER JOIN Saskaitos_busenos sb ON sk.busena = sb.id_Saskaitos_busenos WHE
                     order.Weight = Convert.ToDouble(item["svoris"]);
                     order.CompanyId = Convert.ToInt32(item["fk_Siuntu_imoneid"]);
                     order.StateId = Convert.ToString(item["busena"]);
-                    order.ClientId = id;
+                    order.ClientId = Convert.ToInt32(item["fk_Klientasid_Klientas"]);
 
                 }
                 return order;
@@ -301,7 +301,7 @@ si.id INNER JOIN Saskaitos_busenos sb ON sk.busena = sb.id_Saskaitos_busenos WHE
         }
 
 
-        public List<Bill> GetAllBills(int userId) {
+        public List<Bill> GetAllBills(int? userId) {
             List<Bill> bills = new List<Bill>();
 
             try

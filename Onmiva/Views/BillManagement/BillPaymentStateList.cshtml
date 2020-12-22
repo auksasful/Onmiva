@@ -8,24 +8,38 @@
 @Html.ActionLink("Atgal", "BillManagement", "BillManagement")
 
 
-<ul class="list-group">
-    @foreach (var item in Model)
-    {
-    <li class="list-group-item">
-        Sąskaita @item.NumberId Sukurta: @item.Date Apmokėti iki: @item.PayUntil
-        @if (item.State == "apmoketa")
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nr</th>
+            <th scope="col">Sukūrimo data</th>
+            <th scope="col">Apmokėti iki</th>
+            <th scope="col">Būsena</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
         {
-            <span style="color:green">Apmokėta</span>
+            <tr>
+                <td>@item.NumberId</td>
+                <td>@item.Date</td>
+                <td>@item.PayUntil</td>
+                <td>
+                    @if (item.State == "apmoketa")
+                    {
+                        <span style="color:green">Apmokėta</span>
+                    }
+                    else if (item.State == "neapmoketa")
+                    {
+                        <span style="color:red">Neapmokėta</span>
+                    }
+                    else
+                    {
+                        <span style="color:yellowgreen">Laukiama apmokėjimo patvirtinimo</span>
+                    }
+                </td>
+            </tr>
         }
-        else if (item.State == "neapmoketa")
-        {
-            <span style="color:red">Neapmokėta</span>
-        }
-        else
-        {
-            <span style="color:yellowgreen">Laukiama apmokėjimo patvirtinimo</span>
-        }
-    </li> 
-    }
-    </ul>
 
+    </tbody>
+</table>

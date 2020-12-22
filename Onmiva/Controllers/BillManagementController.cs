@@ -17,25 +17,65 @@ namespace Onmiva.Controllers
         // GET: BillManagement
         public ActionResult BillManagement(int start = 0, int count = 20)
         {
+
+
+            if (userRepository.GetUserRole(User.Identity.Name) != "Admin" && userRepository.GetUserRole(User.Identity.Name) != "Darbuotojas")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View(userRepository.GetUsers(start, count));
         }
 
-        public ActionResult BillPaymentStateList(int userId)
+        public ActionResult BillPaymentStateList(int? userId)
         {
+
+            if (userId == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (userRepository.GetUserRole(User.Identity.Name) != "Admin" && userRepository.GetUserRole(User.Identity.Name) != "Darbuotojas")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
             return View(billRepository.GetAllBills(userId));
         }
 
         public ActionResult CreateBill()
         {
+            if (userRepository.GetUserRole(User.Identity.Name) != "Admin" && userRepository.GetUserRole(User.Identity.Name) != "Darbuotojas")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
             return View();
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateBill(Bill bill)
+        public ActionResult CreateBill(int? orderId, string PayComment, decimal? Sum, DateTime? PayUntil)
         {
+            if (orderId == null || Sum == null || PayUntil == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
 
+            if (userRepository.GetUserRole(User.Identity.Name) != "Admin" && userRepository.GetUserRole(User.Identity.Name) != "Darbuotojas")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            Bill bill = new Bill();
+            bill.OrderId = (int)orderId;
+            bill.PayComment = PayComment;
+            bill.Sum = (decimal)Sum;
+            bill.PayUntil = (DateTime)PayUntil;
+            Order order = billRepository.GetOrder((int)orderId);
+            bill.SendingCompany = order.Company;
+            bill.SendingCompanyId = order.CompanyId;
 
             if (billRepository.CreateBill(bill))
             {
@@ -51,27 +91,57 @@ namespace Onmiva.Controllers
 
         public ActionResult EditBill()
         {
+            if (userRepository.GetUserRole(User.Identity.Name) != "Admin" && userRepository.GetUserRole(User.Identity.Name) != "Darbuotojas")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
             return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
-        public ActionResult EditBill(int id)
+        public ActionResult EditBill(int? id)
         {
+
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (userRepository.GetUserRole(User.Identity.Name) != "Admin" && userRepository.GetUserRole(User.Identity.Name) != "Darbuotojas")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
             Bill bill = billRepository.GetUserBill(id);
             return View(bill);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditBill(int NumberId, string PayComment, decimal Sum, int StateId, DateTime PayUntil)
+        public ActionResult EditBill(int? NumberId, string PayComment, decimal? Sum, int? StateId, DateTime? PayUntil)
         {
 
+            if (NumberId == null || Sum == null || StateId == null || PayUntil == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
+            if (userRepository.GetUserRole(User.Identity.Name) != "Admin" && userRepository.GetUserRole(User.Identity.Name) != "Darbuotojas")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
             Bill bill = new Bill();
-            bill.NumberId = NumberId;
+            bill.NumberId = (int)NumberId;
             bill.PayComment = PayComment;
-            bill.Sum = Sum;
-            bill.StateId = StateId;
-            bill.PayUntil = PayUntil;
+            bill.Sum = (decimal)Sum;
+            bill.StateId = (int)StateId;
+            bill.PayUntil = (DateTime)PayUntil;
            
 
             if (billRepository.EditBill(bill))
@@ -91,8 +161,21 @@ namespace Onmiva.Controllers
 
 
         [HttpGet]
-        public ActionResult DeleteBill(int BillId)
+        public ActionResult DeleteBill(int? BillId)
         {
+
+            if (BillId == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
+            if (userRepository.GetUserRole(User.Identity.Name) != "Admin" && userRepository.GetUserRole(User.Identity.Name) != "Darbuotojas")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
             Bill bill = billRepository.GetUserBill(BillId);
             return View(bill);
         }
@@ -100,9 +183,21 @@ namespace Onmiva.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteBill(Bill bill, int NumberId)
+        public ActionResult DeleteBill(Bill bill, int? NumberId)
         {
-            if (billRepository.DeleteBill(NumberId))
+            if (NumberId == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
+            if (userRepository.GetUserRole(User.Identity.Name) != "Admin" && userRepository.GetUserRole(User.Identity.Name) != "Darbuotojas")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
+            if (billRepository.DeleteBill((int)NumberId))
             {
                 ViewBag.Status = true;
                 ViewBag.Message = "Sąskaita " + NumberId + " ištrinta";
@@ -110,25 +205,42 @@ namespace Onmiva.Controllers
             else
             {
                 ViewBag.Status = false;
-                ViewBag.Message = "Nepavyko ištrinti sąskaitos " + NumberId;
+                ViewBag.Message = "Nepavyko ištrinti sąskaitos - galimai ji jau apmokėta" + NumberId;
             }
 
             return View(bill);
         }
 
 
-        public ActionResult ViewBill(int billId)
+        public ActionResult ViewBill(int? billId)
         {
+            if (billId == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
+            if (userRepository.GetUserRole(User.Identity.Name) != "Admin" && userRepository.GetUserRole(User.Identity.Name) != "Darbuotojas")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View(billRepository.GetUserBill(billId));
         }
 
 
         public ActionResult UserBillsList(DateTime? startDate, DateTime? endDate, int userId = 0)
         {
+            if (userRepository.GetUserRole(User.Identity.Name) != "Admin" && userRepository.GetUserRole(User.Identity.Name) != "Darbuotojas")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View(billRepository.GetUserBills(startDate, endDate, userId));
         }
 
         public List<User> GetUsers(int from, int count) {
+
             return userRepository.GetUsers(from, count);
         }
 

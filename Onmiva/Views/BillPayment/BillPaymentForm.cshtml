@@ -28,7 +28,23 @@ else
         </div>
     }
 
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Paypal pavyzdinis prisijungimas</th>
+                <th scope="col">Paypal pavyzdinis slaptažodis</th>
+            </tr>
+        </thead>
+        <tbody>
 
+            <tr>
+                <td>sb-mr7h14137367@personal.example.com</td>
+                <td>yy$:%L1A</td>
+              
+            </tr>
+
+        </tbody>
+    </table>
 
     using (Html.BeginForm())
     {
@@ -65,11 +81,11 @@ else
                         {
                             <input type="radio" id="@val" name="PaymentMethod" value="@val" />
                         }
-                            <label for="@val">@val</label>
-                            <br>
-                     }
-                        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" border="0" alt="PayPal Logo">
-                    </div>
+                        <label for="@val">@val</label>
+                        <br>
+                    }
+                    <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" border="0" alt="PayPal Logo">
+                </div>
             </div>
             <input type="hidden" name="Bill" value="@Model.Bill" />
             <input type="hidden" name="Client" value="@Model.Client" />

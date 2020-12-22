@@ -27,8 +27,6 @@ namespace Onmiva.Models
 
 
         [Display(Name = "Apmokėti iki")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Laukas Apmokėti iki negali būti tuščias")]
         public DateTime PayUntil { get; set; }
 
