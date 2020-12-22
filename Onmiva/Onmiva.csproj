@@ -174,6 +174,7 @@
     <Reference Include="System.Text.Encodings.Web, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encodings.Web.4.4.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
+    <Reference Include="netstandard" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -297,6 +298,7 @@
     </Compile>
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\ClientReservation.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\Sender.cs" />
     <Compile Include="Models\Sender_Rating.cs" />
@@ -323,6 +325,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="script.ddl" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -383,6 +386,8 @@
     <Content Include="Views\SenderManagement\SenderManagement.cshtml" />
     <Content Include="Views\SenderManagement\SenderManagementAdmin.cshtml" />
     <Content Include="Views\UserManagement\RolesControl.cshtml" />
+    <Content Include="Views\OrderManagement\ChangeOrderStatus.cshtml" />
+    <Content Include="Views\OrderManagement\AssignShipmentCompany.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

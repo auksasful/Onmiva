@@ -4,4 +4,13 @@
 }
 
 <h2>Užsakymų filtravimo forma</h2>
+
+@using (Html.BeginForm("FilterOrders2", "OrderManagement"))
+{
+    <p>
+        Filtruoti pagal klientą: @Html.TextBox("searchKlientas")
+        <input type="submit" value="Filtruoti" class="btn-primary" />
+    </p>
+}
+
 @Html.ActionLink("Atgal", "OrdersList", "OrderManagement") 

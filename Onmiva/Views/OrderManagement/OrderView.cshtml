@@ -1,11 +1,43 @@
-﻿
-@{
-    ViewBag.Title = "OrderView";
-}
+﻿@using Onmiva.Models;
 
-<h2>Užsakymo peržiūra</h2>
+    @{
+        ViewBag.Title = "OrderView";
+    }
 
-@Html.ActionLink("Redaguoti užsakymą", "OrderEdit", "OrderManagement")
-<br>
+    <h2>Užsakymo peržiūra</h2>
 
-@Html.ActionLink("Atgal", "OrdersList", "OrderManagement") 
+    <html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+    </head>
+    <body>
+        <table class="table table-striped">
+            <thead>
+            <th>Id</th>
+            <th>Data</th>
+            <th>Suma</th>
+            <th>Užsakymo būsena</th>
+            <th>Priskirta įmonė</th>
+            <th>Klientas</th>
+            </thead>
+       @foreach (var i in Model)
+       {
+            @Html.ActionLink("Redaguoti užsakymą", "OrderEdit", new { Id = @i.Id })
+            <br>
+            @Html.ActionLink("Perduoti siuntų įmonei", "AssignShipmentCompany", new { Id = @i.Id })
+            <br>
+            @Html.ActionLink("Keisti užsakymo būsena", "ChangeOrderStatus", new { Id = @i.Id })
+            <br>
+            @Html.ActionLink("Atgal", "OrdersList", "OrderManagement")
+            <tr>
+                <td>@i.Id</td>
+                <td>@i.Date</td>
+                <td>@i.Amount</td>
+                <td>@i.OrderStatus</td>
+                <td>@i.ShipmentCompany</td>
+                <td>@i.Client</td>
+            </tr>
+       }
+        </table>
+    </body>
+</html>

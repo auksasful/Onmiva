@@ -1,15 +1,35 @@
-﻿
-@{
-    ViewBag.Title = "OrderList";
-}
+﻿@using Onmiva.Models;
 
-<h2>Užsakymų sąrašas</h2>
+    @{
+        ViewBag.Title = "OrdersList";
+    }
 
+    <h2>Užsakymų sąrašas</h2>
 
-@Html.ActionLink("Sukurti užsakymą", "OrderCreate", "OrderManagement")
-<br>
-@Html.ActionLink("Peržiūrėti užsakymą", "OrderView", "OrderManagement")
-<br>
 @Html.ActionLink("Filtruoti užsakymus", "FilterOrders", "OrderManagement")
 <br>
+@Html.ActionLink("Sukurti užsakymą", "OrderCreate", "OrderManagement")
+<br>
 @Html.ActionLink("Atgal", "Index", "Home")
+
+
+<table class="table table-striped">
+    <thead>
+        <th>Id</th>
+        <th>Data</th>
+        <th>Suma</th>
+        <th>Užsakymo būsena</th>
+    </thead>
+
+
+    @foreach (var i in Model)
+    {
+        <tr>
+            <td>@i.Id </td>
+            <td>@i.Date</td>
+            <td>@i.Amount</td>
+            <td>@i.OrderStatus</td>
+            <td>@Html.ActionLink("Peržiūrėti", "OrderView", new { id = @i.Id })</td>
+</tr>
+    }
+</table>
