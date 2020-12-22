@@ -1,0 +1,42 @@
+﻿@model Onmiva.Models.Bill
+@{
+    ViewBag.Title = "DeleteBill";
+}
+
+<br><br>
+
+@Html.ActionLink("Atgal", "BillManagement", "BillManagement")
+
+<br><br>
+@if (ViewBag.Status == null)
+{
+    <h2>Šalinti sąskaitą @Model.NumberId?</h2>
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="NumberId" value="@Model.NumberId" />
+        <div class="form-group">
+            <input type="submit" value="Šalinti" class="btn btn-danger" />
+        </div>
+    }
+}
+
+@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+{
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-success">
+            @ViewBag.Message
+        </div>
+    }
+}
+else
+{
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger">
+            <strong>Klaida </strong> @ViewBag.Message
+        </div>
+    }
+
+}

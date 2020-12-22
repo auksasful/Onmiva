@@ -1,23 +1,95 @@
 ﻿@model IEnumerable<Onmiva.Models.Bill>
 @{
-    ViewBag.Title = "UserBillsList";
-}
+    /**/
 
+    ViewBag.Title = "UserBillsList";
+    DateTime startDate = DateTime.Now;
+    DateTime endDate = DateTime.Now;
+}
+<br>
+<br>
 <h2>Vartotojo sąskaitų sąrašas</h2>
 
 
+<br>
+<a class="btn btn-primary" role="button" href="@Url.Action("BillPaymentStateList", "BillManagement", new { userId = Request.Params["userId"] })">Sąskaitų apmokėjimo būsenų sąrašas</a>
+
 @Html.ActionLink("Sukurti sąskaitą", "CreateBill", "BillManagement")
+
 <br>
 @Html.ActionLink("Atgal", "BillManagement", "BillManagement")
 
-<ul class="list-group">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <b>Filtravimas tarp datų:</b>
 
-    @foreach (var item in Model)
-    {
-    <li class="list-group-item">
-        <a href="@Url.Action("ViewBill", "BillManagement", new { billId = item.NumberId } )">Sąskaita nr. @item.NumberId @item.Date </a>
-        @Html.ActionLink("Redaguoti sąskaitą", "EditBill", "BillManagement", 1) <button>Šalinti</button>
-    </li>
-    }
+    <div class="form-group">
 
-</ul>
+        <div class="col-md-10">
+            Nuo:
+            @Html.EditorFor(model => startDate, new { htmlAttributes = new { @class = "datepicker" } })
+            @Html.ValidationMessageFor(model => startDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+
+        <div class="col-md-10">
+            Iki:
+            @Html.EditorFor(model => endDate, new { htmlAttributes = new { @class = "datepicker" } })
+            @Html.ValidationMessageFor(model => endDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Atrinkti" class="btn btn-default" />
+        </div>
+    </div>
+
+}
+<br>
+<br>
+<br>
+<br>
+<hr>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nr</th>
+            <th scope="col">Data</th>
+            <th scope="col">Apmokėti iki</th>
+            <th scope="col">Veiksmai</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.NumberId</th>
+                <td>@item.Date</td>
+                <td>@item.PayUntil</td>
+                <td>
+                    <a href="@Url.Action("ViewBill", "BillManagement", new { billId = item.NumberId })">Peržiūrėti</a>
+                    <a href="@Url.Action("EditBill", "BillManagement", new { id = item.NumberId })">Redaguoti</a>
+                    <a href="@Url.Action("DeleteBill", "BillManagement", new { BillId = item.NumberId })">Šalinti</a>
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+@section Scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+}
+
+
+

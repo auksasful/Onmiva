@@ -6,42 +6,55 @@
 
 <h2>Sąskaitų administravimo langas</h2>
 
-<br>
-@Html.ActionLink("Sąskaitų apmokėjimo būsenų sąrašas", "BillPaymentStateList", "BillManagement")
+
 <br>
 @Html.ActionLink("Atgal", "Index", "Home")
 
-<ul class="list-group">
-
-    @foreach (var item in Model)
-    {
-        <li class="list-group-item"> <a href="@Url.Action("UserBillsList", "BillManagement", new { userId = item.UserId })">Vartotojo @item.FirstName @item.LastName - @item.EmailID sąskaitos</a></li>
-    }
-
-
-    
-
-</ul>
-@usersCount
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-            </a>
-        </li>
-        @for (int i = 1; i <= (int)(usersCount / 20) + 1; i++)
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Vardas</th>
+            <th scope="col">Pavardė</th>
+            <th scope="col">El.Paštas</th>
+            <th scope="col">Veiksmai</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        
+        @foreach (var item in Model)
         {
-            <li class="page-item"><a class="page-link" href="@Url.Action("BillManagement", "BillManagement", new {start=(i - 1) * 20, count = 20})">@i</a></li>
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.EmailID</td>
+                <td>
+                    <a href="@Url.Action("UserBillsList", "BillManagement", new { userId = item.UserId })">Peržiūrėti sąskaitas</a>
+                </td>
+            </tr>
         }
+    </tbody>
+</table>
 
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                @for (int i = 1; i <= (int)(usersCount / 20) + 1; i++)
+                {
+                    <li class="page-item"><a class="page-link" href="@Url.Action("BillManagement", "BillManagement", new {start=(i - 1) * 20, count = 20})">@i</a></li>
+                }
+
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
 

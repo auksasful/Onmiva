@@ -9,7 +9,8 @@
     <div class="panel-body">
         <h3>Apmokėjimų valdymas</h3>
         <br>
-        @if (new Onmiva.Controllers.UserManagementController().GetUserRole(User.Identity.Name) == "Admin")
+        @if (new Onmiva.Controllers.UserManagementController().GetUserRole(User.Identity.Name) == "Admin" 
+            || new Onmiva.Controllers.UserManagementController().GetUserRole(User.Identity.Name) == "Darbuotojas")
         {
             @Html.ActionLink("Sąskaitų administravimo langas", "BillManagement", "BillManagement")
             <br>

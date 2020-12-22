@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "BillPaymentConfirmed";
+}
+
+<br><br><br>
+@Html.ActionLink("Atgal", "BillPaymentList", "BillPayment")
+
+@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+{
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-success">
+            @ViewBag.Message
+        </div>
+    }
+}
+else
+{
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger">
+            <strong>Klaida </strong> @ViewBag.Message
+        </div>
+    }
+
+}

@@ -8,21 +8,34 @@
 <br>
 @Html.ActionLink("Atgal", "Index", "Home")
 
-<ul class="list-group">
 
-    @foreach (var item in Model)
-    {
-    <li class="list-group-item">
-        Sąskaita nr. @item.NumberId @item.Date
-        @if (item.State == "neapmoketa")
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nr</th>
+            <th scope="col">Data</th>
+            <th scope="col">Veiksmai</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
         {
-            @Html.ActionLink("Apmokėti sąskaitą", "BillPaymentForm", "BillPayment", new { billId = item.NumberId })
-        }
-        else
-        {
-            @item.State
-        }
-    </li>
-    }
+            <tr>
+                <th scope="row">@item.NumberId</th>
+                <td>@item.Date</td>
+                <td>
+                    @if (item.State == "neapmoketa")
+                    {
+                        <a href="@Url.Action("BillPaymentForm", "BillPayment", new { billId = item.NumberId })">Apmokėti sąskaitą</a>
+                    }
+                    else
+                    {
+                        @item.State
+                    }
+                </td>
+            </tr>
 
-</ul>
+        }
+
+    </tbody>
+</table>

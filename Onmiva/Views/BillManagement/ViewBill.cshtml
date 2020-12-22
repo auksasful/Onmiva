@@ -2,14 +2,37 @@
 @{
     ViewBag.Title = "Sąskaita " + Model.NumberId;
 }
-
-<h2>Sąskaita @Model.NumberId</h2>
+@Html.ActionLink("Atgal", "BillManagement", "BillManagement")
 
 <br>
-<b> @Html.LabelFor(model => model.NumberId):</b> @Model.NumberId <br>
-<b> @Html.LabelFor(model => model.Sum):</b> @Model.Sum <br>
-<b> @Html.LabelFor(model => model.Date):</b> @Model.Date <br>
-<b> @Html.LabelFor(model => model.PayComment):</b> @Model.PayComment <br>
-<b> @Html.LabelFor(model => model.PayUntil):</b> @Model.PayUntil <br>
-<b> @Html.LabelFor(model => model.State):</b> @Model.State <br>
-<b> @Html.LabelFor(model => model.SendingCompany):</b> @Model.SendingCompany <br>
+<br>
+@Html.ActionLink("Atgal", "BillManagement", "BillManagement")
+<h2>Sąskaita @Model.NumberId</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">@Html.LabelFor(model => model.NumberId)</th>
+            <th scope="col">@Html.LabelFor(model => model.Sum)</th>
+            <th scope="col">@Html.LabelFor(model => model.Date)</th>
+            <th scope="col">@Html.LabelFor(model => model.PayComment)</th>
+            <th scope="col">@Html.LabelFor(model => model.PayUntil)</th>
+            <th scope="col">@Html.LabelFor(model => model.State)</th>
+            <th scope="col">@Html.LabelFor(model => model.SendingCompany)</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>@Model.NumberId</td>
+            <td>@Model.Sum</td>
+            <td>@Model.Date</td>
+            <td>@Model.PayComment</td>
+            <td>@Model.PayUntil</td>
+            <td>@Model.State</td>
+            <td>@Model.SendingCompany</td>
+        </tr>
+
+    </tbody>
+</table>
+

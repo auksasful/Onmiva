@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Onmiva.Models.Bill>
 @{
     ViewBag.Title = "BillPaymentStateList";
 }
@@ -8,8 +8,38 @@
 @Html.ActionLink("Atgal", "BillManagement", "BillManagement")
 
 
-<ul class="list-group">
-    <li class="list-group-item"> Sąskaita 1 - Apmokėta</li>
-    <li class="list-group-item"> Sąskaita 2 - Neapmokėta </li>
-</ul>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nr</th>
+            <th scope="col">Sukūrimo data</th>
+            <th scope="col">Apmokėti iki</th>
+            <th scope="col">Būsena</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NumberId</td>
+                <td>@item.Date</td>
+                <td>@item.PayUntil</td>
+                <td>
+                    @if (item.State == "apmoketa")
+                    {
+                        <span style="color:green">Apmokėta</span>
+                    }
+                    else if (item.State == "neapmoketa")
+                    {
+                        <span style="color:red">Neapmokėta</span>
+                    }
+                    else
+                    {
+                        <span style="color:yellowgreen">Laukiama apmokėjimo patvirtinimo</span>
+                    }
+                </td>
+            </tr>
+        }
 
+    </tbody>
+</table>

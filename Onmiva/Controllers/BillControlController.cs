@@ -18,8 +18,12 @@ namespace Onmiva.Views.BillControl
             return View(billRepository.GetUserBills(User.Identity.Name));
         }
 
-        public ActionResult BillView(int billId)
+        public ActionResult BillView(int? billId)
         {
+            if (billId == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View(billRepository.GetUserBill(billId));
         }
     }

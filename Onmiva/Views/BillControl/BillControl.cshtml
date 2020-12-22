@@ -8,15 +8,35 @@
 <br>
 @Html.ActionLink("Atgal", "Index", "Home")
 
-<ul class="list-group">
 
-    @foreach (var item in Model)
-    {
-        <li class="list-group-item">
-            <a href="@Url.Action("BillView", "BillControl", new { billId = item.NumberId } )">Sąskaita nr. @item.NumberId @item.Date </a>
-        </li>
-    }
 
-</ul>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nr</th>
+            <th scope="col">Data</th>
+            <th scope="col">Apmokėti iki</th>
+            <th scope="col">Būsena</th>
+            <th scope="col">Veiksmai</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <th scope="row">@item.NumberId</th>
+                <td>@item.Date</td>
+                <td>@item.PayUntil</td>
+                <td>@item.State</td>
+                <td>
+                    <a href="@Url.Action("BillView", "BillControl", new { billId = item.NumberId } )">Peržiūrėti</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
 
 
