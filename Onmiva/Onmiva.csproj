@@ -316,8 +316,8 @@
     <Compile Include="Models\ClientReservation.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Contract.cs" />
-    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Bill_Payment.cs" />
+    <Compile Include="Models\Order_Bill.cs" />
     <Compile Include="Models\Sender.cs" />
     <Compile Include="Models\Sender_Rating.cs" />
     <Compile Include="Models\Sender_Review.cs" />

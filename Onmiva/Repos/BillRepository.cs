@@ -99,7 +99,7 @@ sk.fk_Klientasid_Klientas = kl.id_Klientas WHERE kl.el_pastas = '" + email + "';
             try
             {
 
-                Order order = GetOrder(bill.OrderId);
+                Order_Bill order = GetOrder(bill.OrderId);
 
                 string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
                 MySqlConnection mySqlConnection = new MySqlConnection(conn);
@@ -127,8 +127,8 @@ sk.fk_Klientasid_Klientas = kl.id_Klientas WHERE kl.el_pastas = '" + email + "';
             }
         }
 
-        public List<Order> GetOrdersWithoutBill() {
-            List<Order> orders = new List<Order>();
+        public List<Order_Bill> GetOrdersWithoutBill() {
+            List<Order_Bill> orders = new List<Order_Bill>();
 
             try
             {
@@ -147,7 +147,7 @@ INNER JOIN Siuntu_imones im ON uz.fk_Siuntu_imoneid = im.id WHERE sas.fk_Uzsakym
 
                 foreach (DataRow item in dt.Rows)
                 {
-                    Order order = new Order();
+                    Order_Bill order = new Order_Bill();
                     order.Id = Convert.ToInt32(item["id"]);
                     order.Sum = Convert.ToDecimal(item["suma"]);
                     order.Date = Convert.ToDateTime(item["data"]);
@@ -207,9 +207,9 @@ si.id INNER JOIN Saskaitos_busenos sb ON sk.busena = sb.id_Saskaitos_busenos WHE
         }
 
 
-        public Order GetOrder(int id)
+        public Order_Bill GetOrder(int id)
         {
-            Order order = new Order();
+            Order_Bill order = new Order_Bill();
 
             try
             {

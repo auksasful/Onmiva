@@ -73,7 +73,7 @@ namespace Onmiva.Controllers
             bill.PayComment = PayComment;
             bill.Sum = (decimal)Sum;
             bill.PayUntil = (DateTime)PayUntil;
-            Order order = billRepository.GetOrder((int)orderId);
+            Order_Bill order = billRepository.GetOrder((int)orderId);
             bill.SendingCompany = order.Company;
             bill.SendingCompanyId = order.CompanyId;
 
@@ -251,7 +251,7 @@ namespace Onmiva.Controllers
 
 
 
-        public List<Order> GetOrdersWithoutBill() {
+        public List<Order_Bill> GetOrdersWithoutBill() {
             return billRepository.GetOrdersWithoutBill();
         }
 

@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "CreateBill";
-    List<Onmiva.Models.Order> orders = ((Onmiva.Controllers.BillManagementController)this.ViewContext.Controller).GetOrdersWithoutBill();
+    List<Onmiva.Models.Order_Bill> orders = ((Onmiva.Controllers.BillManagementController)this.ViewContext.Controller).GetOrdersWithoutBill();
 }
 <br><br>
 <h2>Sąskaitos sukūrimo forma</h2>
